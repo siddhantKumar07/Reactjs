@@ -1,6 +1,6 @@
-# React JS Project
+# React JS learning
 
-This is a React.js project.
+This is a React.js .
 
 ## Getting Started
 
