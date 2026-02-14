@@ -1,0 +1,44 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+}
+.card{
+  display: inline-block;
+  background-color: #ea8181;
+  border-radius: 7%;
+  border: 2.5px solid black;
+  box-shadow: 0 4px 8px rgba(122, 5, 5, 0.1);
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 20px auto;
+}
+button{
+  background-color: #ff4c4c;
+  color: white;
+  border: 2px solid #ff4c4c;
+  font-size: 1.1vw;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+h1{
+  text-decoration: underline;
+}
+p{
+  font-size: 1.2vw;
+  font-weight: bold;
+}
+button:hover{
+  background-color: #ff1a1a;
+  border-color: #ff1a1a;
+}
