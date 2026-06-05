@@ -1,12 +1,12 @@
 import React from 'react'
-
+import bookmarkImg from '../assets/Bookmark--Streamline-Sharp-Remix.png'  ;
 const card = () => {
   return (
     <div className='card'>
      <div className="nav">
       <img src="" />
       <button>
-        Save
+        Save <img src={bookmarkImg} alt="" />
       </button>
      </div>
      <div className="mid">
