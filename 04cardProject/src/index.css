@@ -35,6 +35,8 @@ justify-content: space-between;
   border-radius: 20px;
   align-self: center;
   background-color: #fff;
+  cursor: pointer;
+
 }
 .nav button img{
   border-radius: 0%;
@@ -47,6 +49,8 @@ justify-content: space-between;
   background-color: #fff;
   border-radius: 50%;
   border:2px solid;
+  object-fit: cover;
+  object-position: top;
 }
 .mid{
   display: flex;
@@ -90,4 +94,9 @@ footer button{
   background-color: black;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
+
+}
+button:active{
+  scale: 0.9;
 }
