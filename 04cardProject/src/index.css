@@ -15,6 +15,10 @@ html,body{
 }
 .parent{
   padding: 20px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
 }
 .nav{
   height:30% ;
@@ -71,7 +75,7 @@ justify-content: space-between;
   background-color: #fff;
   color: black;
   border-radius: 10px;
-  border: none;
+  border: 1px solid;
 }
 footer{
   display: flex;
