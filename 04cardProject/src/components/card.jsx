@@ -13,8 +13,8 @@ const card = (props) => {
       <h3 className='name'>{props.name}</h3>
       <p className='position'>{props.position}</p>
       <div className="btns">
-        <button>Part time</button>
-        <button>senior level</button>
+        <button >{props.jobType}</button>
+        <button>{props.jobLevel}</button>
       </div>
      </div>
      <footer>
