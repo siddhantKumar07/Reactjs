@@ -17,3 +17,26 @@ html,body{
 .parent{
   padding: 20px;
 }
+.nav{
+  height:30% ;
+  width:100% ;
+  background-color: rgb(0, 131, 127);
+  border-radius: inherit;
+  padding: 7px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+.nav button{
+  padding: 12px 25px;
+  border-radius: 20px;
+
+}
+.nav img{
+  height: 75%;
+  width: 25%;
+  background-color: #fff;
+  border-radius: 50%;
+  border:2px solid;
+}
