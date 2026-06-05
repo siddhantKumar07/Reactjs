@@ -64,6 +64,10 @@ justify-content: space-between;
 }
 .btns button{
   padding: 5px 7px;
+  background-color: #fff;
+  color: black;
+  border-radius: 10px;
+  border: none;
 }
 footer{
   display: flex;
