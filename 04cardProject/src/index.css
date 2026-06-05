@@ -40,3 +40,42 @@ justify-content: space-between;
   border-radius: 50%;
   border:2px solid;
 }
+.mid{
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+ height: 40%;
+ width: 100%;
+ padding: 5px;
+}
+.mid .name{
+  font-size: 25px;
+}
+.mid .position{
+  font-size: 20px;
+  font-weight: bold;
+}
+.mid .btns{
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btns button{
+  padding: 5px 7px;
+}
+footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30%;
+  padding: 5px;
+}
+footer button{
+  padding: 5px 6px ;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 10px;
+}
