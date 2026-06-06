@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Section from 
 const App = () => {
   return (
-    <div className='h-screen w-full bg-red-950 text-white text-5xl'>App</div>
+<div>
+  <Section1/>
+</div>
   )
 }
 
