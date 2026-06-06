@@ -1,0 +1,11 @@
+.btn {
+  width: 100%;
+  padding: 20px;
+  background-color: #de6828;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn button{
+    padding: 10px 25px;
+}

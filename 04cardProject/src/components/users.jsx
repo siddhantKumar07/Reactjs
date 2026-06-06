@@ -4,7 +4,7 @@ const users = () => {
     const jobs = [
   {
     id: 1,
-    brandLogo: "https://logo.clearbit.com/google.com",
+    brandLogo: "https://cdn.simpleicons.org/google",
     companyName: "Google",
     position: "Frontend Developer",
     jobType: "Full Time",
@@ -14,7 +14,7 @@ const users = () => {
   },
   {
     id: 2,
-    brandLogo: "https://logo.clearbit.com/microsoft.com",
+    brandLogo: "https://cdn.simpleicons.org/microsoft",
     companyName: "Microsoft",
     position: "React Developer",
     jobType: "Part Time",
@@ -24,7 +24,7 @@ const users = () => {
   },
   {
     id: 3,
-    brandLogo: "https://logo.clearbit.com/amazon.com",
+    brandLogo: "https://cdn.simpleicons.org/amazon",
     companyName: "Amazon",
     position: "Software Engineer",
     jobType: "Full Time",
@@ -34,7 +34,7 @@ const users = () => {
   },
   {
     id: 4,
-    brandLogo: "https://logo.clearbit.com/netflix.com",
+    brandLogo: "https://cdn.simpleicons.org/netflix",
     companyName: "Netflix",
     position: "UI Engineer",
     jobType: "Full Time",
@@ -44,7 +44,7 @@ const users = () => {
   },
   {
     id: 5,
-    brandLogo: "https://logo.clearbit.com/spotify.com",
+    brandLogo: "https://cdn.simpleicons.org/meta",
     companyName: "Spotify",
     position: "Frontend Intern",
     jobType: "Part Time",
@@ -64,7 +64,7 @@ const users = () => {
   },
   {
     id: 7,
-    brandLogo: "https://logo.clearbit.com/adobe.com",
+    brandLogo: "https://cdn.simpleicons.org/adobe",
     companyName: "Adobe",
     position: "JavaScript Developer",
     jobType: "Full Time",
@@ -74,7 +74,7 @@ const users = () => {
   },
   {
     id: 8,
-    brandLogo: "https://logo.clearbit.com/airbnb.com",
+    brandLogo: "https://cdn.simpleicons.org/airbnb",
     companyName: "Airbnb",
     position: "Frontend Engineer",
     jobType: "Part Time",
@@ -84,7 +84,7 @@ const users = () => {
   },
   {
     id: 9,
-    brandLogo: "https://logo.clearbit.com/uber.com",
+    brandLogo: "https://cdn.simpleicons.org/uber",
     companyName: "Uber",
     position: "Web Developer",
     jobType: "Full Time",
@@ -94,7 +94,7 @@ const users = () => {
   },
   {
     id: 10,
-    brandLogo: "https://logo.clearbit.com/linkedin.com",
+    brandLogo: "https://cdn.simpleicons.org/linkedin",
     companyName: "LinkedIn",
     position: "Frontend Architect",
     jobType: "Full Time",
