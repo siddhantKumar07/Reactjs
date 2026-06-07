@@ -8,8 +8,6 @@ const rightContent = () => {
       <Leftimg />
       <Midimg />
       <Rightimg />
-      <Rightimg />
-      <Rightimg />
     </div>
   );
 };
