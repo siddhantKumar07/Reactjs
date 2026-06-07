@@ -3,7 +3,7 @@ import React from 'react'
 const leftimg = () => {
   return (
     
-           <div className="w-2/6 rounded-3xl bg-[url('https://i.pinimg.com/736x/49/35/6a/49356a364e280e2ede66e661905e43b0.jpg')] bg-cover bg-center bg-no-repeat flex flex-col justify-between pb-6">
+           <div className="w-2/6 h-full rounded-3xl bg-[url('https://i.pinimg.com/736x/49/35/6a/49356a364e280e2ede66e661905e43b0.jpg')] bg-cover bg-center bg-no-repeat flex flex-col justify-between pb-6">
         <div className="h-9 w-9 rounded-full text-black bg-white mx-2 my-5 text-center">
           1
         </div>
