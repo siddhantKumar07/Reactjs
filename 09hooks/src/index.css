@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+button{
+    padding: 10px 25px;
+    background-color: skyblue;
+    font-size: 25px;
+    cursor: pointer;
+   
+}
+div{
+    height: 50vh ;
+    width: 100%;
+    background-color: rgb(146, 240, 146);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.btnContainer{
+
+height: 300px ;
+    width: 300px; 
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+    background-color: rgb(17, 157, 199);
+}
+h1{
+    font-size: 35px;
+}
