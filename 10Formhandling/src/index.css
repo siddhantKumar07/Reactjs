@@ -16,7 +16,7 @@ button,input{
     padding: 20px 40px ;
     margin: 10px;
     border: 2px solid;
-    background-color: #888888;
+    /* background-color: #888888; */
     font-size: larger;
     border-radius: 20px;
 }

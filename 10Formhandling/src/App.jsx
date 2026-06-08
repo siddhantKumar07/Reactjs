@@ -5,6 +5,8 @@ const App = () => {
   const formSubmit = (e) => {
     e.preventDefault();
     console.log(text);
+
+    setText(" ")
     
   };
   return (
@@ -17,7 +19,7 @@ const App = () => {
           setText(e.target.value);
         }}
         />
-        <button className="">click</button>
+        <button className="bg-sky-400">click</button>
       </form>
     </div>
   );
