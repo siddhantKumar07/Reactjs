@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+button,input{
+    padding: 20px 40px ;
+    margin: 10px;
+    border: 2px solid;
+    background-color: #888888;
+    font-size: larger;
+    border-radius: 20px;
+}
