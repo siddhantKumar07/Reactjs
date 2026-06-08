@@ -5,8 +5,8 @@ const App = () => {
   e.preventDefault()
   }
   return (
-    <div className='h-screen w-full flex bg-black p-0.5  '>
-     <form onSubmit={handleform} className='flex flex-col gap-4 justify-between  m-15 h-[50%] w-[40%] items-start p-7 bg-yellow-200'>
+  <div className='h-screen w-full lg:flex bg-black p-0.5  '>
+     <form onSubmit={handleform} className='flex flex-col gap-4 justify-between lg:w-1/2 m-10 h-[50%] w-[40%] items-start p-7 bg-yellow-200'>
 
         <input type="text" 
       placeholder='Enter notes Heading'
@@ -19,7 +19,26 @@ const App = () => {
       />
       <button className='px-4 cursor-pointer py-5 w-full bg-white outline-none text-black rounded-2xl font-bold text-2xl '>Add note</button>
      </form>
-     <div className='flex bg-sky-300 h-52 w-40'></div>
+     <div className=' bg-sky-300 h-full  lg:w-1/2 '>
+     <h1 className='text-center h-[5%] text-3xl font-bold'>Your Tasks</h1>
+<div className='flex gap-3 flex-wrap py-8 overflow-auto h-[calc(100vh-5%)]'>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+  <div className='h-50 w-42 rounded-2xl bg-white'></div>
+
+</div>
+
+     </div>
     </div>
   )
 }
