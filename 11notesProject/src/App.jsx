@@ -1,14 +1,32 @@
 import React, { useState } from "react";
 
 const App = () => {
-  const [text, setText] = useState("");
-  const [areatext, setAreatext] = useState("");
+  const [title, setTitle] = useState("");
+  const [detail, setDetail] = useState("");
+  const [task, setTask] = useState([])
+  function store() {
+  let data = JSON.parse(localStorage.getItem("cards")) || [];
+
+  data.forEach((elem) => {
+    console.log(elem);
+  });
+
+  data.push(task);
+
+  localStorage.setItem("cards", JSON.stringify(data));
+}
   const handleform = (e) => {
     e.preventDefault();
-    console.log(areatext);
-    console.log(text);
-    setText("");
-    setAreatext("");
+    console.log(detail);
+    console.log(title);
+    const copytask =[...task]
+    copytask.push({title,detail})
+    setTask(copytask)
+    console.log(copytask);
+    
+    setTitle("");
+    setDetail("");
+    store();
   };
 
   return (
@@ -21,9 +39,9 @@ const App = () => {
         <input
           type="text"
           placeholder="Enter notes Heading"
-          value={text}
+          value={title}
           onChange={(e) => {
-            setText(e.target.value);
+            setTitle(e.target.value);
           }}
           className=" outline-none px-4 py-3 w-full rounded text-white  border-2 text-3xl bg-black"
         />
@@ -31,9 +49,9 @@ const App = () => {
         <textarea
           type="text"
           placeholder="Enter the details"
-          value={areatext}
+          value={detail}
           onChange={(e) => {
-            setAreatext(e.target.value);
+            setDetail(e.target.value);
           }}
           className="px-4 py-8 max-h-40 outline-none rounded w-full text-white border-2 text-3xl bg-black"
         />
@@ -47,12 +65,12 @@ const App = () => {
         </h1>
         <div className="flex gap-3 flex-wrap py-8 px-5 overflow-auto h-[calc(100vh-5%)]">
           <div className="h-70 py-5 px-3.5 w-60 rounded-4xl bg-orange-300">
-            <h1 className="text-4xl">{text}</h1>
-            <h3 className="text-2xl mt-2 h-[80%]">{areatext}</h3>
+            <h1 className="text-4xl">{title}</h1>
+            <h3 className="text-2xl mt-2 h-[80%]">{detail}</h3>
           </div>
           <div className="h-70 w-60 rounded-2xl bg-white">
-            <h1>{text}</h1>
-            <h3>{areatext}</h3>
+              <h1>{title}</h1>
+            <h3>{detail}</h3>
           </div>
         </div>
       </div>
