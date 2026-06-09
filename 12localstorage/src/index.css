@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,html {
+  font-family: Arial, sans-serif;
+height:100%;
+width :100%;
+    display: flex;
+align-items: center;
+justify-content: center;
+
+}
+div{
+    display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 10px;
+}
+button{
+padding: 10px 25px ;
+background: black;
+color: white;
+}
+input{
+    padding: 20px 35px;
+    color: black;
+    font-size: 25px;
+}
