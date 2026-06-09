@@ -5,7 +5,7 @@ const App = () => {
     // const response = await fetch('https://jsonplaceholder.typicode.com/users')
     // const data = await response.json();
     // console.log(data)
-    const response = await axios('https://jsonplaceholder.typicode.com/users')
+    const response = await axios.get('https://jsonplaceholder.typicode.com/users')
     console.log(response.data)
   }
   return (
