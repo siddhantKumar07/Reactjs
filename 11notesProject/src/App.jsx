@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { X } from 'lucide-react';
 const App = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [tasks, setTask] = useState([])
-
-  function store(tasks) {
-  localStorage.setItem("cards", JSON.stringify(tasks));
-}
-
-
+const [taskarr, setTaskarr] = useState([])
+   
+useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(taskarr));
+  console.log("Saved:", taskarr);
+}, [taskarr]);
 
 
 // this is used to remove the element
 const removetask=(idx)=>{
   const copytask = [...tasks]
   copytask.splice(idx,1)
-  store(copytask);
-
+  setTask(copytask)
 }
 
   const handleform = (e) => {
@@ -28,7 +27,7 @@ const removetask=(idx)=>{
     
     setTitle("");
     setDetail("");
-    store(...tasks);
+    setTaskarr(copytask)
   };
 
   return (
