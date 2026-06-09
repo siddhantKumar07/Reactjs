@@ -3,13 +3,13 @@ import { X } from 'lucide-react';
 const App = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [tasks, setTask] = useState([])
-const [taskarr, setTaskarr] = useState([])
-   
+ const [tasks, setTask] = useState(
+  JSON.parse(localStorage.getItem("tasks")) || []
+);
+
 useEffect(() => {
-  localStorage.setItem("tasks", JSON.stringify(taskarr));
-  console.log("Saved:", taskarr);
-}, [taskarr]);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}, [tasks]);
 
 
 // this is used to remove the element
@@ -19,17 +19,17 @@ const removetask=(idx)=>{
   setTask(copytask)
 }
 
-  const handleform = (e) => {
-    e.preventDefault();
-    const copytask =[...tasks]
-    copytask.push({title,detail})
-    setTask(copytask)
-    
-    setTitle("");
-    setDetail("");
-    setTaskarr(copytask)
-  };
+const handleform = (e) => {
+  e.preventDefault();
 
+  const copytask = [...tasks];
+  copytask.push({ title, detail });
+
+  setTask(copytask);
+
+  setTitle("");
+  setDetail("");
+};
   return (
     <div className="h-screen w-full lg:flex bg-black p-0.5  ">
       <form
