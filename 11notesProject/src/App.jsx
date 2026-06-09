@@ -1,32 +1,33 @@
 import React, { useState } from "react";
-
+import { X } from 'lucide-react';
 const App = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
-  const [task, setTask] = useState([])
-  function store() {
-  let data = JSON.parse(localStorage.getItem("cards")) || [];
+  const [tasks, setTask] = useState([])
 
-  data.forEach((elem) => {
-    console.log(elem);
-  });
+  // let data = JSON.parse(localStorage.getItem("cards")) || [];
+  // function store() {
 
-  data.push(task);
+//   data.forEach((elem) => {
+//     console.log(elem);
+//   });
 
-  localStorage.setItem("cards", JSON.stringify(data));
-}
+//   data.push(task);
+
+//   localStorage.setItem("cards", JSON.stringify(data));
+// }
   const handleform = (e) => {
     e.preventDefault();
     console.log(detail);
     console.log(title);
-    const copytask =[...task]
+    const copytask =[...tasks]
     copytask.push({title,detail})
     setTask(copytask)
-    console.log(copytask);
+    console.log(tasks);
     
     setTitle("");
     setDetail("");
-    store();
+    // store();
   };
 
   return (
@@ -63,15 +64,14 @@ const App = () => {
         <h1 className="text-center h-[5%] text-3xl font-bold text-white">
           Your Tasks
         </h1>
-        <div className="flex gap-3 flex-wrap py-8 px-5 overflow-auto h-[calc(100vh-5%)]">
-          <div className="h-70 py-5 px-3.5 w-60 rounded-4xl bg-orange-300">
-            <h1 className="text-4xl">{title}</h1>
-            <h3 className="text-2xl mt-2 h-[80%]">{detail}</h3>
+        <div className="flex gap-3 flex-wrap py-8 px-1 overflow-auto h-[calc(100vh-5%)]">
+          {tasks.map((task,idx)=>{
+            return  <div key={idx} className="h-60 py-5 relative px-3.5 w-57 bg-cover rounded-4xl bg-[url('https://www.bing.com/th/id/OIP.rQE-2z4GsRRsCjlZrqiffwHaKX?w=193&h=270&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2')]">
+              <h1 className="absolute cursor-pointer right-1.5 px-2 py-2 bg-red-500 rounded-full top-2"><X size={24} color="#fff" /></h1>
+            <h1 className="text-4xl font-bold">{task.title}</h1>
+            <h3 className="text-2xl h-[80%]">{task.detail}</h3>
           </div>
-          <div className="h-70 w-60 rounded-2xl bg-white">
-              <h1>{title}</h1>
-            <h3>{detail}</h3>
-          </div>
+          })}
         </div>
       </div>
     </div>
