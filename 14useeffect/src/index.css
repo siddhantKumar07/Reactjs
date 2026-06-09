@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,html {
+  font-family: Arial, sans-serif;
+height:100%;
+width :100%;
+}
+button{
+  padding: 20px 35px ;
+  font-size: larger;
+  margin: 50px;
+  background-color: black;
+  color: white;
+}
