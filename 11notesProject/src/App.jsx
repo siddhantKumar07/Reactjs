@@ -5,29 +5,30 @@ const App = () => {
   const [detail, setDetail] = useState("");
   const [tasks, setTask] = useState([])
 
-  // let data = JSON.parse(localStorage.getItem("cards")) || [];
-  // function store() {
+  function store(tasks) {
+  localStorage.setItem("cards", JSON.stringify(tasks));
+}
 
-//   data.forEach((elem) => {
-//     console.log(elem);
-//   });
 
-//   data.push(task);
 
-//   localStorage.setItem("cards", JSON.stringify(data));
-// }
+
+// this is used to remove the element
+const removetask=(idx)=>{
+  const copytask = [...tasks]
+  copytask.splice(idx,1)
+  store(copytask);
+
+}
+
   const handleform = (e) => {
     e.preventDefault();
-    console.log(detail);
-    console.log(title);
     const copytask =[...tasks]
     copytask.push({title,detail})
     setTask(copytask)
-    console.log(tasks);
     
     setTitle("");
     setDetail("");
-    // store();
+    store(...tasks);
   };
 
   return (
@@ -67,9 +68,11 @@ const App = () => {
         <div className="flex gap-3 flex-wrap py-8 px-1 overflow-auto h-[calc(100vh-5%)]">
           {tasks.map((task,idx)=>{
             return  <div key={idx} className="h-60 py-5 relative px-3.5 w-57 bg-cover rounded-4xl bg-[url('https://www.bing.com/th/id/OIP.rQE-2z4GsRRsCjlZrqiffwHaKX?w=193&h=270&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2')]">
-              <h1 className="absolute cursor-pointer right-1.5 px-2 py-2 bg-red-500 rounded-full top-2"><X size={24} color="#fff" /></h1>
-            <h1 className="text-4xl font-bold">{task.title}</h1>
-            <h3 className="text-2xl h-[80%]">{task.detail}</h3>
+              <h1 onClick={()=>{
+                removetask(idx)
+              }} className="active:scale-90  absolute cursor-pointer right-2.5 px-2 py-2 bg-red-500 rounded-full top-1"><X size={16} color="#fff" /></h1>
+            <h1 className="text-2xl font-bold">{task.title}</h1>
+            <h3 className="text-1xl font-bold text-sky-950 h-[80%]">{task.detail}</h3>
           </div>
           })}
         </div>
