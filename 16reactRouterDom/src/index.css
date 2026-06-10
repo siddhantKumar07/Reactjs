@@ -20,6 +20,8 @@ h1{
   font-size: 100px;
   text-align: center;
   margin-top: 15%;
+  text-decoration: underline;
+  color: white;
 }
 nav{
   display: flex;
@@ -39,7 +41,7 @@ links{
   justify-content: space-between;
   
 }
-a{
+.link{
   text-decoration: none;
   color: black;
   font-size: 25px;
