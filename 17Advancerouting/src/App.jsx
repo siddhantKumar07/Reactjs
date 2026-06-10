@@ -6,6 +6,7 @@ import About from './components/about'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Product from './components/Product'
+import NotFound from './components/NotFound'
 const App = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route  path='/contact' element={<Contact/>}/>
         <Route  path='/product' element={<Product/>}/>
+        <Route  path='*' element={<NotFound/>}/>
       </Routes>
       <Footer/>
     </div>
