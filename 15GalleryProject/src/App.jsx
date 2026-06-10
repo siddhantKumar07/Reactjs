@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 const App = () => {
   const [user, setUser] = useState([])
@@ -18,17 +18,22 @@ const App = () => {
       
     })
   }
-  async function getImge(){
+   async function getData(){
     const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=20")
-    setUser(response.data)
-    console.log(await user);
-    
+    setUser(response.data) 
   }
+
+  // this will called once when the page open or loads 
+  useEffect(() => {
+  getData()
+  },[])
+  
+ 
   return (
     <div className='bg-black'>
-        <button onClick={getImge} className='h-10 text-2xl active:scale-90 cursor-pointer rounded-3xl m-2 w-20 bg-sky-500'>
+        {/* <button onClick={getImge} className='h-10 text-2xl active:scale-90 cursor-pointer rounded-3xl m-2 w-20 bg-sky-500'>
           click
-        </button>
+        </button> */}
         <div className='h-full w-full text-2xl text-sky-700 flex gap-5 items-center  flex-wrap justify-center font-bold'>
           {printuserData}
         </div>
