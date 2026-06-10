@@ -16,17 +16,17 @@ width :100%;
   background-color: rgb(15, 179, 244);
   height: 10vh;
   width: 100vw;
+  padding: 0 20px;
 }
 .nav2{
     display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: blue;
   width: 35%;
   height: 10vh;
 }
 .nav2 h2{
-  font-size: 20px;
+  font-size: 25px;
   color: black;
   font-weight: bold;
 }

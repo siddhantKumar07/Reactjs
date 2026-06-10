@@ -1,9 +1,11 @@
 import React from 'react'
+import Nav2 from './Nav2'
 
 const Nav = () => {
   return (
     <div className='nav'>
-       <h1>Siddhan kumar</h1>
+       <h1>Siddhant kumar</h1>
+       <Nav2/>
     </div>
   )
 }
