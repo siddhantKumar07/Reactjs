@@ -31,9 +31,6 @@ const App = () => {
  
   return (
     <div className='bg-black'>
-        {/* <button onClick={getImge} className='h-10 text-2xl active:scale-90 cursor-pointer rounded-3xl m-2 w-20 bg-sky-500'>
-          click
-        </button> */}
         <div className='h-full w-full text-2xl text-sky-700 flex gap-5 items-center  flex-wrap justify-center font-bold'>
           {printuserData}
         </div>
