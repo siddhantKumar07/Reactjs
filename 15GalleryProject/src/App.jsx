@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Card from './components/pages'
 const App = () => {
   const [user, setUser] = useState([])
   const [nextCount, setnextCount] = useState(2)
-  const [previousCount, setPreviousCount] = useState(nextCount
-    
-  )
+  const [previousCount, setPreviousCount] = useState(nextCount )
   
 
   let printuserData ="no data available "
   if(user.length>0){
-    printuserData = user.map((elem)=>{
-      return <a href={elem.url} target='_blank'>
-        <div>
-       <div  className='h-60 w-60 rounded-3xl '>
-        <img className='h-full w-full rounded-3xl bg-cover' src={elem.download_url} alt="" />
+    printuserData = user.map((elem,idx)=>{
+      return <div key={idx}>
+        <Card elem={elem}/>
       </div>
-      <h3 className='text-lg text-center text-white'>{elem.author}</h3>
-      </div>
-      </a>
       
     })
   }
@@ -53,11 +47,12 @@ const response = await axios.get(`https://picsum.photos/v2/list?page=${nextCount
  
   return (
     <div className='bg-black'>
-        <div className='h-full w-full text-2xl text-sky-700 pt-3 flex gap-5 items-center  flex-wrap justify-center font-bold'>
+        <div className='h-full w-full text-2xl text-sky-700 pt-5 flex gap-10 items-center  flex-wrap justify-center font-bold'>
           {printuserData}
         </div>
-        <div className='flex items-center justify-center py-6 bg-amber-300 gap-4.5'>
+        <div className='flex items-center justify-center py-8  gap-8 '>
           <button onClick={previousData} className='bg-sky-600 cursor-pointer active:scale-95 rounded text-black px-6 py-3 font-bold '>Prev</button>
+          <h1 className='text-white font-bold'>Page no {nextCount-1}</h1>
           <button onClick={nextData} className='bg-sky-600 rounded cursor-pointer active:scale-95 text-black px-6 py-3 font-bold '>Next</button>
         </div>
     </div>
