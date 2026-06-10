@@ -16,7 +16,7 @@ const App = () => {
        <div  className='h-60 w-60 rounded-3xl '>
         <img className='h-full w-full rounded-3xl bg-cover' src={elem.download_url} alt="" />
       </div>
-      <h3 className='text-lg text-white'>{elem.author}</h3>
+      <h3 className='text-lg text-center text-white'>{elem.author}</h3>
       </div>
       </a>
       
@@ -53,7 +53,7 @@ const response = await axios.get(`https://picsum.photos/v2/list?page=${nextCount
  
   return (
     <div className='bg-black'>
-        <div className='h-full w-full text-2xl text-sky-700 flex gap-5 items-center  flex-wrap justify-center font-bold'>
+        <div className='h-full w-full text-2xl text-sky-700 pt-3 flex gap-5 items-center  flex-wrap justify-center font-bold'>
           {printuserData}
         </div>
         <div className='flex items-center justify-center py-6 bg-amber-300 gap-4.5'>
