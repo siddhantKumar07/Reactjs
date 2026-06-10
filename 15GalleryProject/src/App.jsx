@@ -49,9 +49,6 @@ const response = await axios.get(`https://picsum.photos/v2/list?page=${nextCount
   useEffect(() => {
   getData()
   },[])
-  // useEffect(() => {
-
-  // },[user])
   
  
   return (
