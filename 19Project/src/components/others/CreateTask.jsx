@@ -1,0 +1,51 @@
+import React from "react";
+
+const CreateTask = () => {
+  return (
+    <form className="text-white h-[50%] w-[95%] flex items-start justify-between  bg-[#3b3a3a] px-4.5 py-0.5 rounded-lg">
+      {/* <h1 className="text-xl font-bold">Create Task</h1> */}
+      <div className="h-full w-[50%] pr-30">
+   
+      <h2 className="text-xl mt-2">Title Task :</h2>
+      <input
+        type="text"
+        className="px-1 border-2 border-gray-400 font-bold w-full py-1.5 text-xl rounded-xl mt-0.5"
+        placeholder="Make a ui Design"
+      />
+      <h2 className="text-xl mt-4">Date :</h2>
+      <input
+        type="date"
+        className=" border-2 border-gray-400 font-bold w-full py-1.5 px-1 text-xl rounded-xl mt-0.5"
+      />
+      <h2 className="text-xl mt-4">Assign To :</h2>
+      <input
+        type="text"
+        className=" border-2 border-gray-400 font-bold w-full py-1.5 px-1 text-xl rounded-xl mt-0.5"
+        placeholder="Enter Employee name"
+      />
+      <h2 className="text-xl mt-4">Category :</h2>
+      <input
+        type="text"
+        className=" border-2 border-gray-400 font-bold w-full py-1.5 px-1 text-xl rounded-xl mt-0.5"
+        placeholder="design,dev,etc"
+      />
+
+
+
+      </div>
+      <div className=" w-[50%]">
+  <h2 className="text-lg mt-2">Description :</h2>
+      <textarea
+        className=" px-1 h-60  font-bold  border-2 border-gray-400 w-[85%] py-2.5 text-xl rounded-xl mt-1.5"
+        placeholder="Enter Description"
+      ></textarea>
+            <button className="mt-3 font-bold text-2xl py-2.5 w-[85%] bg-green-500 border-none active:scale-90 cursor-pointer text-white rounded-xl">
+        Create Task
+      </button>
+      </div>
+    </form>
+  );
+};
+
+export default CreateTask;
+    
