@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Nav2 from './Nav2'
+import Button from './Button'
+import { ThemeDataContext } from '../context/ThemeContext'
 
 const Nav = () => {
-    const [theme, setTheme] = useState('light')
+  const[theme]=useContext(ThemeDataContext)
   return (
-    <div className='nav'>
+    <div className={`nav ${theme}`}>
        <h1>Siddhant kumar</h1>
-       <Nav2 theme={theme}/>
+       <Nav2 />
+       <Button/>
     </div>
   )
 }

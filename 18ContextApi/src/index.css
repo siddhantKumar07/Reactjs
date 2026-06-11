@@ -35,3 +35,19 @@ width :100%;
   width: 100vw;
   height: 100vh;
 }
+button{
+  padding: 15px 20px ;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+button:active{
+  scale: 0.90;
+}
+.light{
+background-color: #a7feff;
+}
+.dark{
+background-color: #045345;
+}
