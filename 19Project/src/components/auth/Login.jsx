@@ -5,15 +5,15 @@ const Login = () => {
   const [pass, setPass] = useState('')
   const SubmitHandle =(e)=>{
     e.preventDefault();
-    console.log(email)
-    console.log(pass)
+    console.log("email : "+email)
+    console.log("password : "+pass)
     setEmail("")
     setPass("")
   }
   return (
-    <div className="h-screen w-full flex p-0.5 items-center justify-center bg-sky-400">
+    <div className="h-screen w-full flex p-0.5 items-center justify-center bg-gradient-to-b from-blue-300 via-purple-500 to-pink-300">
       <div
-        className=" w-[25%] h-[80%] bg-gray-800 border-2 border-b-blue-950 px-3
+        className=" w-[400px] h-[600px] bg-gray-800 border-2 border-b-blue-950 px-3
       flex flex-col gap-28 rounded-3xl justify-start items-start py-5"
       >
         <h1 className="text-start font-bold text-3xl text-white">Log in</h1>
