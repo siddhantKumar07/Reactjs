@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { setLocalStorage } from "../../utils/localStorage";
 
 const Login = ({handleLogin}) => {
   const [email, setEmail] = useState('')

@@ -1,6 +1,7 @@
 import React from 'react'
 
-const TaskList = () => {
+const TaskList = ({data}) => {
+    // console.log(data.loggedInEmployee)
   return (
     <div className='tasklist overflow-scroll h-[55%] w-full rounded-xl flex items-center justify-start flex-nowrap gap-2  '>
     <div className='flex items-start gap-8 flex-col shrink-0 h-[90%] w-[25%] bg-sky-600 rounded-xl m-3 px-3.5'>
