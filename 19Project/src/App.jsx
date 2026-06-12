@@ -14,7 +14,7 @@ const App = () => {
     if(Authdata){
       const loggedIn = JSON.parse(localStorage.getItem("loggedIn"))
           if(loggedIn){
-            setUser(loggedIn.role)
+            // setUser(loggedIn.role)
           }
     }
 
