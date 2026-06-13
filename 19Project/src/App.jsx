@@ -3,7 +3,6 @@ import Login from "./components/auth/Login";
 import EmployessDashboard from "./components/dashboard/EmployessDashboard";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import { AuthContext } from "./context/AuthProvider";
-import { setLocalStorage } from "./utils/localStorage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -16,7 +15,6 @@ const App = () => {
             // setUser(loggedIn.role)
           }
     }
-
 
   }, [Authdata])
     
@@ -39,8 +37,6 @@ const App = () => {
            setUser("employee");
          setLoggedInData(employee) // this will set which user logged in 
          console.log(employee)
-     
-     
     } 
     else {
       alert("who are you Invalid Credentials");
