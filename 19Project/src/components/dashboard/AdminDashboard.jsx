@@ -8,7 +8,7 @@ const AdminDashboard = (props) => {
 
   return (
     <div className="bg-[#1c1c1c] h-screen w-full flex flex-col  gap-3 items-center">
-      <Header data={props} />
+      <Header data={props} changeUser={props.setUser} />
       <CreateTask/>
       <AllTask/>
     </div>

@@ -3,8 +3,6 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const AllTask = () => {
   const authData = useContext(AuthContext);
-
-  console.log(authData.employees);
   return (
     <div className="bg-[#3b3a3a] px-4 rounded-lg  w-[95%] ">
       <div className="bg-[#3b3a3a] px-2 py-1 flex rounded justify-between mb-2">

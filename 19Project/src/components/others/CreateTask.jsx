@@ -17,7 +17,7 @@ const CreateTask = () => {
     employeeData.employees.forEach((emp)=>{
       if(assignTo==emp.firstname){
         emp.tasks.push( {
-        active: true,
+        active: false,
         newTask: true,
         completed: false,
         failed: false,
@@ -26,7 +26,6 @@ const CreateTask = () => {
         taskDate: date,
         category: category,
       })
-      emp.taskNumbers.active += 1
       emp.taskNumbers.newTask += 1
       }
       
@@ -44,6 +43,7 @@ const CreateTask = () => {
    
       <h2 className="text-xl mt-2">Title Task :</h2>
       <input
+      required
       value={title}
       onChange={(e)=>{
         setTitle(e.target.value)
@@ -54,6 +54,7 @@ const CreateTask = () => {
       />
       <h2 className="text-xl mt-4">Date :</h2>
       <input
+      required
       value={date}
       onChange={(e)=>{
         setDate(e.target.value)
@@ -63,6 +64,7 @@ const CreateTask = () => {
       />
       <h2 className="text-xl mt-4">Assign To :</h2>
       <input
+      required
       value={assignTo}
       onChange={(e)=>{
         setAssignTo(e.target.value)
@@ -73,6 +75,7 @@ const CreateTask = () => {
       />
       <h2 className="text-xl mt-4">Category :</h2>
       <input
+      required
       value={category}
       onChange={(e)=>{
         setCategory(e.target.value)
@@ -88,6 +91,7 @@ const CreateTask = () => {
       <div className=" w-[50%]">
   <h2 className="text-lg mt-2">Description :</h2>
       <textarea
+      required
       value={description}
       onChange={(e)=>{
         setDescription(e.target.value)
