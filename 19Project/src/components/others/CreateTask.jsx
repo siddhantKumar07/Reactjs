@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
-import { setLocalStorage } from "../../utils/localStorage";
 
 const CreateTask = () => {
   const [title, setTitle] = useState('')
@@ -9,15 +8,8 @@ const CreateTask = () => {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
 
-  const employeeData =useContext(AuthContext);
-//  employeeData.employees.forEach((employee)=>{
-//     console.log(employee.tasks)
-//  })
+  const employeeData =useContext(AuthContext);// this will give the employees and admin data from Authcontext which takes data from localstorage
 
-
-useEffect(() => {
-setLocalStorage()
-}, [employeeData])
 
   const handleSubmit=(e)=>{
     e.preventDefault()
@@ -34,10 +26,12 @@ setLocalStorage()
         taskDate: date,
         category: category,
       })
+      emp.taskNumbers.active += 1
+      emp.taskNumbers.newTask += 1
       }
       
     })
-    console.log(employeeData.employees)
+    localStorage.setItem("employees", JSON.stringify(employeeData.employees))// this will update the whole employees array into the local storage
     setTitle("")
     setDate("")
     setDescription("")
