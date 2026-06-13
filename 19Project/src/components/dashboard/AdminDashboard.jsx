@@ -7,7 +7,7 @@ const AdminDashboard = (props) => {
   // Inside the props the admin detail is passed through the local storage
 
   return (
-    <div className="bg-[#1c1c1c] h-screen w-full flex flex-col  gap-8 items-center">
+    <div className="bg-[#1c1c1c] h-screen w-full flex flex-col  gap-3 items-center">
       <Header data={props} />
       <CreateTask/>
       <AllTask/>

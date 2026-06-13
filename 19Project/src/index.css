@@ -8,3 +8,12 @@
 .tasklist {
   scrollbar-width: none;
 }
+.removeScroll::-webkit-scrollbar {
+  display: none;
+}
+.removeScroll{
+  scrollbar-width: none;
+}
+.removeScroll{
+  cursor: all-scroll;
+}

@@ -2,7 +2,7 @@ import React from "react";
 
 const CreateTask = () => {
   return (
-    <form className="text-white h-[50%] w-[95%] flex items-start justify-between  bg-[#3b3a3a] px-4.5 py-0.5 rounded-lg">
+    <form className="text-white h-[50%] w-[95%] flex items-start justify-between  bg-[#3b3a3a] px-4.5 pb-2.5 rounded-lg">
       {/* <h1 className="text-xl font-bold">Create Task</h1> */}
       <div className="h-full w-[50%] pr-30">
    
