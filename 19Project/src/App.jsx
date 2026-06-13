@@ -14,7 +14,7 @@ const App = () => {
     if(Authdata){
       const loggedIn = JSON.parse(localStorage.getItem("loggedIn"))
           if(loggedIn){
-            // setUser(loggedIn.role)
+            setUser(loggedIn.role)
           }
     }
 
@@ -55,7 +55,7 @@ const App = () => {
       ) : user == "admin" ? (
         <AdminDashboard loggedInAdmin={user=="admin"?loggedInData:''} />
       ) : user == "employee" ? (
-        <EmployessDashboard loggedInEmployee={user=="employee"?loggedInData:" "}/>
+        <EmployessDashboard  loggedInEmployee={user=="employee"?loggedInData:" "}/>
       ) : (
         <Login />
       )}
