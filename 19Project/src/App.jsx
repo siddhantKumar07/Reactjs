@@ -7,33 +7,45 @@ import { AuthContext } from "./context/AuthProvider";
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInData, setLoggedInData] = useState(null)
-  let Authdata = useContext(AuthContext);
+  const { userdata } = useContext(AuthContext);
+
   useEffect(() => {
-    if(Authdata){
+    if(userdata){
       const loggedIn = JSON.parse(localStorage.getItem("loggedIn"))
-          if(loggedIn){
-            setUser(loggedIn.role)
+          if(loggedIn?.role === "admin"){
+            const admin = userdata.admin.find((admin) => admin.email === loggedIn.email)
+            if(admin){
+              setUser(loggedIn.role)
+              setLoggedInData(admin)
+            }
+          }
+          else if(loggedIn?.role === "employee"){
+            const employee = userdata.employees.find((employee) => employee.email === loggedIn.email)
+            if(employee){
+              setUser(loggedIn.role)
+              setLoggedInData(employee)
+            }
           }
     }
 
-  }, [Authdata])
+  }, [userdata])
     
   // this will run when the user is press the login button after writing their credentials
   const handleLogin = (email, pass) => {
-      const admin = Authdata.admin.find((e) => { return e.email === email && e.pass === pass;})
-      const employee =Authdata.employees.find((e) => { return e.email === email &&
+      const admin = userdata.admin.find((e) => { return e.email === email && e.pass === pass;})
+      const employee =userdata.employees.find((e) => { return e.email === email &&
          e.pass===pass; })
 
          // this is for if the logged in user is admin
-    if (Authdata && admin) {
-       localStorage.setItem("loggedIn",JSON.stringify({role:"admin"}))
+    if (userdata && admin) {
+       localStorage.setItem("loggedIn",JSON.stringify({role:"admin", email: admin.email}))
       setUser("admin");
       setLoggedInData(admin)
       console.log(admin)
     } 
     // this is for if the logged in user is employeee
-    else if (Authdata&&employee) {
-        localStorage.setItem("loggedIn",JSON.stringify({role:"employee"})) // iske wajah se problem hogi
+    else if (userdata&&employee) {
+        localStorage.setItem("loggedIn",JSON.stringify({role:"employee", email: employee.email}))
            setUser("employee");
          setLoggedInData(employee) // this will set which user logged in 
          console.log(employee)
@@ -43,14 +55,16 @@ const App = () => {
     }
   };
 
+  if (!userdata) return null;
+
   return (
     <>
       {!user ? (
         <Login handleLogin={handleLogin} />
       ) : user == "admin" ? (
-        <AdminDashboard setUser={setUser} loggedInAdmin={user=="admin"?loggedInData:''} />
+        <AdminDashboard setUser={setUser} loggedInAdmin={loggedInData} />
       ) : user == "employee" ? (
-        <EmployessDashboard setUser={setUser}  loggedInEmployee={user=="employee"?loggedInData:" "}/>
+        <EmployessDashboard setUser={setUser} loggedInEmployee={loggedInData}/>
       ) : (
         <Login handleLogin={handleLogin} />
       )}

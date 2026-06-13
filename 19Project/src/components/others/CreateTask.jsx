@@ -8,29 +8,44 @@ const CreateTask = () => {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
 
-  const employeeData =useContext(AuthContext);// this will give the employees and admin data from Authcontext which takes data from localstorage
+  const { userdata, setUserData } = useContext(AuthContext);// this will give the employees and admin data from Authcontext which takes data from localstorage
 
 
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log(title ,date , assignTo,category,description)
-    employeeData.employees.forEach((emp)=>{
+    const updatedEmployees = userdata.employees.map((emp)=>{
       if(assignTo==emp.firstname){
-        emp.tasks.push( {
-        active: false,
-        newTask: true,
-        completed: false,
-        failed: false,
-        taskTitle: title,
-        taskDescription: description,
-        taskDate: date,
-        category: category,
-      })
-      emp.taskNumbers.newTask += 1
+        return {
+          ...emp,
+          taskNumbers: {
+            ...emp.taskNumbers,
+            newTask: emp.taskNumbers.newTask + 1,
+          },
+          tasks: [
+            ...emp.tasks,
+            {
+              active: false,
+              newTask: true,
+              completed: false,
+              failed: false,
+              taskTitle: title,
+              taskDescription: description,
+              taskDate: date,
+              category: category,
+            },
+          ],
+        }
       }
-      
+      return emp
     })
-    localStorage.setItem("employees", JSON.stringify(employeeData.employees))// this will update the whole employees array into the local storage
+
+    setUserData({
+      ...userdata,
+      employees: updatedEmployees,
+    })
+
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees))// this will update the whole employees array into the local storage
     setTitle("")
     setDate("")
     setDescription("")

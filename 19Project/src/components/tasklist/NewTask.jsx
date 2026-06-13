@@ -1,7 +1,6 @@
 import React from 'react'
 
 const NewTask = ({task}) => {
-  console.log(task)
   return (
     <div className='flex items-start gap-8 flex-col shrink-0 h-[90%] w-[25%] bg-yellow-300 rounded-xl m-3 px-3.5'>
         <div className='h-15 w-full flex items-center justify-between '>

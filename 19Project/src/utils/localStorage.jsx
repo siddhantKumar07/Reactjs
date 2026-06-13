@@ -240,7 +240,14 @@ export const setLocalStorage = ()=>{
     localStorage.setItem("admin",JSON.stringify(Admin))
 }
 export const getLocalStorage =()=>{
-    const employees = JSON.parse(localStorage.getItem("employees"));
-    const admin = JSON.parse(localStorage.getItem("admin"))
-return {employees,admin}
+    let storedEmployees = JSON.parse(localStorage.getItem("employees"));
+    let storedAdmin = JSON.parse(localStorage.getItem("admin"))
+
+    if(!storedEmployees || !storedAdmin){
+        setLocalStorage()
+        storedEmployees = employees
+        storedAdmin = Admin
+    }
+
+return {employees: storedEmployees,admin: storedAdmin}
 }
