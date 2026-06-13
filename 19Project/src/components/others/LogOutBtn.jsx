@@ -1,13 +1,13 @@
 import React from 'react'
-import Li
 const LogOutBtn = () => {
-    const handleLogout=()=>{
-        localStorage.setItem("loggedIn",JSON.stringify({role:" "}))
-    
-    }
+   const handleLogout = () => {
+  localStorage.removeItem("loggedIn")
+  window.location.reload()
+}
   return (
-         <button onClick={handleLogout}  className='px-3.5 py-3 bg-red-800 text-white font-bold rounded-xl cursor-pointer active:scale-90'>Log Out</button>
-         <Link></Link>
+         <button onClick={handleLogout}  className='px-3.5 py-3 bg-red-800 text-white font-bold rounded-xl cursor-pointer active:scale-90'>
+  Log Out</button>
+        
   )
 }
 

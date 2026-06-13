@@ -3,13 +3,12 @@ import Login from "./components/auth/Login";
 import EmployessDashboard from "./components/dashboard/EmployessDashboard";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import { AuthContext } from "./context/AuthProvider";
+import { setLocalStorage } from "./utils/localStorage";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInData, setLoggedInData] = useState(null)
   let Authdata = useContext(AuthContext);
- 
-
   useEffect(() => {
     if(Authdata){
       const loggedIn = JSON.parse(localStorage.getItem("loggedIn"))
@@ -57,7 +56,7 @@ const App = () => {
       ) : user == "employee" ? (
         <EmployessDashboard  loggedInEmployee={user=="employee"?loggedInData:" "}/>
       ) : (
-        <Login />
+        <Login handleLogin={handleLogin} />
       )}
     </>
   );
