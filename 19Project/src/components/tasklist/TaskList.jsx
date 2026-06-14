@@ -11,7 +11,7 @@ const TaskList = ({data}) => {
   const cards = []
 
   if (task.newTask) {
-    cards.push(<NewTask key={`${idx}-new`} task={task} />)
+        cards.push(<NewTask key={`${idx}-new`} task={task} data={data} />)
   }
 
   if (task.active) {

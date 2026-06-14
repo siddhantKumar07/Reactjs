@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CompleteTask = ({task,key}) => {
+const CompleteTask = ({task,key,data}) => {
   return (
   <div className='flex items-start gap-8 flex-col shrink-0 h-[90%] w-[25%] bg-indigo-400 rounded-xl m-3 px-3.5'>
         <div key={key} className='h-15 w-full flex items-center justify-between '>
