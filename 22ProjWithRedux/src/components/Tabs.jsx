@@ -6,8 +6,6 @@ const Tabs = () => {
     const tabs = ["images","videos","GIF"]
     const handleClick =(elem)=>{
      dispatch(setActiveTab(elem))
-
-console.log(activeTab);
        
     }
     const activeTab = useSelector((state)=> state.search.activeTab)
@@ -18,7 +16,7 @@ console.log(activeTab);
                     onClick={()=>{
                         handleClick(elem)
                     }}
-                    className={`${activeTab==elem?'bg-red-600':'bg-emerald-400'} px-10 py-2 bg-emerald-400 rounded active:scale-90 cursor-pointer`} key={idx}>{elem}</button>
+                    className={`${activeTab==elem?'bg-red-600':'bg-emerald-400'} px-10 py-2  bg-emerald-400 rounded active:scale-90 cursor-pointer`} key={idx}>{elem}</button>
         })}
     </div>
   )
