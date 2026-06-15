@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetchPhotos, fetchVideo } from './api/mediaApi'
+import { fetchGifs, fetchPhotos, fetchVideo } from './api/mediaApi'
 
 const App = () => {
  
@@ -17,6 +17,12 @@ const App = () => {
   console.log(video)
 }}
   className='px-6 py-2.5 bg-red-400 rounded-xl m-7'> click for video</button>
+  <button
+ onClick={async () => {
+  const gifs = await fetchGifs()
+  console.log(gifs)
+}}
+  className='px-6 py-2.5 bg-red-400 rounded-xl m-7'> click for giphy</button>
 
     </div>
   )

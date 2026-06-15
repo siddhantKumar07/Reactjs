@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const unsplash = import.meta.env.VITE_UNSPLASH_KEY
 const pexels = import.meta.env.VITE_PEXELS_KEY
+const giphy = import.meta.env.VITE_GIPHY_API_KEY
 
 export const fetchPhotos = async () => {
   const query = 'models'
@@ -30,3 +31,18 @@ export const fetchVideo = async () => {
 
   return response.data.videos
 }
+
+export const fetchGifs = async (query="dancing") => {
+  const { data } = await axios.get(
+    "https://api.giphy.com/v1/gifs/search",
+    {
+      params: {
+        api_key: giphy,
+        q: query,
+        limit: 20,
+      },
+    }
+  );
+
+  return data.data;
+};
