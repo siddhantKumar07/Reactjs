@@ -46,7 +46,7 @@ useEffect(()=>{
              data=data.map((items)=>{
                 return {
                     id:items.id,
-                    type:"gif",
+                    type:"GIF",
                     title:items.title,
                     thumbnail:items.images.fixed_width_small.url,
                     src: items.images.fixed_height.url
