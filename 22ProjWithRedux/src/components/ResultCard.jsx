@@ -1,16 +1,25 @@
 import React from 'react'
 
 const ResultCard = ({elem}) => {
-    console.log(elem);
-    
+ const addToCollection=(elem)=>{
+let oldData = JSON.parse(localStorage.getItem("collection"))||[] // this will store old data if available on localStorage if not it return empty array
+let newData =[...oldData,elem]  // this will add new data to old with spread operator
+localStorage.setItem("collection",JSON.stringify(newData));
+ }
   return (
-    <div className='h-70 w-70 rounded-xl relative'>
-       <a href={elem.src} target='_blank'>
-        <div className='h-full w-full rounded-xl '>
-          { elem.type=="images"? <img  className='object-cover object-top rounded-xl h-full w-full' src={elem.src} alt="" /> :elem.type=="video"? <video className='h-full w-full rounded-xl object-cover' autoPlay muted loop src={elem.src}></video> : elem.type=="GIF"?<img className='object-cover rounded-xl h-full w-full' src={elem.src} alt="" />:" "}
-       </div>
+    <div id='hover' className='h-70 w-70 rounded-xl relative [content-visibility:auto] [contain-intrinsic-size:280px]'>
+       <a className='h-full w-full rounded-xl ' href={elem.src} target='_blank' rel='noreferrer'>
+          { elem.type=="images"? <img  className='object-cover object-top rounded-xl h-full w-full' src={elem.thumbnail} alt={elem.title || ""} loading='lazy' decoding='async' /> :elem.type=="video"? <video   className='h-full w-full rounded-xl object-cover' poster={elem.thumbnail} preload='metadata' muted loop src={elem.src} onMouseEnter={(e)=>e.currentTarget.play()} onMouseLeave={(e)=>{ e.currentTarget.pause(); e.currentTarget.currentTime = 0 }}></video> : elem.type=="GIF"?<img className='object-cover rounded-xl h-full w-full' src={elem.thumbnail} alt={elem.title || ""} loading='lazy' decoding='async' />:" "}
        </a>
-         <h1 className='absolute bottom-2 font-bold text-black capitalize text-md left-3'>{elem.title}</h1>
+       <div className='flex items-center justify-between absolute  bottom-0 font-bold bg-transparent w-full px-1 py-1'>
+       <h1  className=' font-bold  text-black capitalize text-sm w-[75%] '>{elem.title}</h1>
+       <button className='rounded-md cursor-pointer active:scale-90 px-2 py-1 bg-blue-700 text-white text-lg'
+       onClick={()=>{
+        addToCollection(elem)
+       }}
+       >Save</button>
+       </div>
+        
        </div>
   )
 }

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import {fetchPhotos,fetchVideo,fetchGifs} from '../api/mediaApi'
-import {clearResults,setLoading,setError,setResults,setQuery} from '../redux/features/searchSlice'
-import { store } from '../redux/store'
+import {setLoading,setError,setResults} from '../redux/features/searchSlice'
 import ResultCard from './ResultCard'
 
 
@@ -36,8 +35,8 @@ useEffect(()=>{
                     id:items.id,
                     type:"video",
                     title:items.user.name,
-                    thumbnaill:items.image,
-                    src:items.video_files[3].link
+                    thumbnail:items.image,
+                    src:items.video_files.find((file)=>file.quality==="sd")?.link || items.video_files[0]?.link
                 }
             })
         }
@@ -66,9 +65,9 @@ useEffect(()=>{
  if(loading) return <h1>Loading....</h1>
 
   return (
-    <div className='scrollbar-thumb-red-700  h-[80vh] w-full py-2 overflow-auto my-7 flex items-center justify-center gap-2 flex-wrap'>
+    <div className=' scrollbar-thumb-red-700  h-[80vh] w-full py-2 overflow-auto my-2 flex items-center justify-center gap-2 flex-wrap'>
       {results.map((elem ,idx)=>{
-       return <ResultCard key={idx} elem={elem}/>
+       return <ResultCard key={elem.id || idx} elem={elem}/>
       })}
 
     </div>
