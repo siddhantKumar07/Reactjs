@@ -6,7 +6,6 @@ const Home = () => {
   return (
    <div className=' w-full h-screen p-[1px] bg-sky-700 text-white '>
  <SearchBar/>
- <Tabs/>
  <ResultGrid/>
     </div>
   )
