@@ -21,7 +21,7 @@ const Collection = () => {
     });
     localStorage.setItem("collection", JSON.stringify(updatedData));
     dispatch(setData(updatedData));
-    dispatch(removeToast())
+    dispatch(removeToast());
   };
 
   return (
@@ -38,12 +38,22 @@ const Collection = () => {
       </nav>
 
       <div className="flex gap-5 h-full w-full py-4 items-center px-4  flex-wrap">
-    {returnedData==''?<h1 className="text-4xl w-full text-red-700 text-center"> Data is not added</h1>: returnedData.map((elem, idx) => {
-          return (
-            <CollectionCard elem={elem} idx={idx} handleRemove={handleRemove} />
-          );
-        })}
-       
+        {returnedData == "" ? (
+          <h1 className="text-4xl w-full text-red-700 text-center">
+            {" "}
+            Data is not added
+          </h1>
+        ) : (
+          returnedData.map((elem, idx) => {
+            return (
+              <CollectionCard
+                elem={elem}
+                idx={idx}
+                handleRemove={handleRemove}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
