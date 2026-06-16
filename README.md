@@ -39,18 +39,17 @@ I'm learning React from basics and will keep updating this repository as I learn
 - [x] JSX
 - [x] Components
 - [x] Props
-- [ ] State
-- [ ] Hooks
-- [ ] React Router
-- [ ] Context API
+- [x] State
+- [x] Hooks
+- [x] React Router Dom
+- [x] Context API
+- [x] Redux
 
 ## Getting Started
 
 ```bash
 git clone <your-repository-url>
 cd <repository-name>
-npm install
-npm run dev
 ```
 
 ## Status
