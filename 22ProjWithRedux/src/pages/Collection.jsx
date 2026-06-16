@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setData } from "../redux/features/collectionSlice";
+import { removeToast, setData } from "../redux/features/collectionSlice";
 import { Link } from "react-router-dom";
 import CollectionCard from "../components/collectionCard";
 const Collection = () => {
@@ -21,11 +21,12 @@ const Collection = () => {
     });
     localStorage.setItem("collection", JSON.stringify(updatedData));
     dispatch(setData(updatedData));
+    dispatch(removeToast())
   };
 
   return (
-    <div className="flex flex-col w-full h-full bg-[#0B1326]">
-      <nav className=" h-16 px-5 pt-4 text-xl flex decoration-white underline">
+    <div className="flex flex-col w-full min-h-[100vh] h-full bg-[#0B1326]">
+      <nav className="border-b-2 border-white h-16 px-5 pt-4 text-xl flex decoration-white underline">
         <h1 className="text-center w-full font-bold text-3xl text-white">
           Welcome to The Collection page{" "}
         </h1>
@@ -37,11 +38,12 @@ const Collection = () => {
       </nav>
 
       <div className="flex gap-5 h-full w-full py-4 items-center px-4  flex-wrap">
-        {returnedData.map((elem, idx) => {
+    {returnedData==''?<h1 className="text-4xl w-full text-red-700 text-center"> Data is not added</h1>: returnedData.map((elem, idx) => {
           return (
             <CollectionCard elem={elem} idx={idx} handleRemove={handleRemove} />
           );
         })}
+       
       </div>
     </div>
   );

@@ -1,9 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addedToast } from "../redux/features/collectionSlice";
 
 const ResultCard = ({ elem }) => {
+
+const dispatch =useDispatch()
   const addToCollection = (elem) => {
     let oldData = JSON.parse(localStorage.getItem("collection")) || []; // this will store old data if available on localStorage if not it return empty array
     let newData = [...oldData, elem]; // this will add new data to old with spread operator
+    dispatch(addedToast())
+    
     localStorage.setItem("collection", JSON.stringify(newData));
   };
   return (

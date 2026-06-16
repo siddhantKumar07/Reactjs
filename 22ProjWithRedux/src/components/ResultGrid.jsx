@@ -47,13 +47,15 @@ const ResultGrid = () => {
         }
         if (activeTab == "GIF") {
           data = await fetchGifs(query);
+          console.log(data);
+          
           data = data.map((items) => {
             return {
               id: items.id,
               type: "GIF",
               title: items.title,
-              thumbnail: items.images.fixed_width_small.url,
-              src: items.images.fixed_height.url,
+                   thumbnail: items.images.fixed_width.url,
+              src: items.images.original.url,
             };
           });
         }
