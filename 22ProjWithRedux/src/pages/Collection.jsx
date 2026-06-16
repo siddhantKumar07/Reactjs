@@ -1,46 +1,50 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setData } from '../redux/features/collectionSlice';
-import { Link } from 'react-router-dom';
-import CollectionCard from '../components/collectionCard';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setData } from "../redux/features/collectionSlice";
+import { Link } from "react-router-dom";
+import CollectionCard from "../components/collectionCard";
 const Collection = () => {
-    let dispatch = useDispatch();
+  let dispatch = useDispatch();
 
-   useEffect(() => {
-let data =JSON.parse(localStorage.getItem("collection"))||[]
-  dispatch(setData(data));
-   }, [dispatch]);
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("collection")) || [];
+    dispatch(setData(data));
+  }, [dispatch]);
 
-   // this line take the data which is set by set data into the collection slice
-    let returnedData = useSelector((state)=>state.Collection.data);
+  // this line take the data which is set by set data into the collection slice
+  let returnedData = useSelector((state) => state.Collection.data);
 
-    // this runs when the user click the remove button
-   const handleRemove=(idx)=>{
-    const updatedData=returnedData.filter((items,index)=>{
-        return index !==idx;
-    })
-    localStorage.setItem("collection",JSON.stringify(updatedData))
-    dispatch(setData(updatedData))
-   }
-
+  // this runs when the user click the remove button
+  const handleRemove = (idx) => {
+    const updatedData = returnedData.filter((items, index) => {
+      return index !== idx;
+    });
+    localStorage.setItem("collection", JSON.stringify(updatedData));
+    dispatch(setData(updatedData));
+  };
 
   return (
-    <div className='flex flex-col w-full h-full bg-[#0B1326]'> 
-    <nav className=' h-16 px-5 pt-4 text-xl flex decoration-white underline'>
-        <h1 className='text-center w-full font-bold text-3xl text-white'>Welcome to The Collection page </h1>
-  <Link to={'/'}><button className='rounded-xl px-2 py-1.5 active:scale-90 cursor-pointer bg-[#C0C1FF] text-blue-700 font-bold'>clickToHome</button></Link>
-    </nav>
+    <div className="flex flex-col w-full h-full bg-[#0B1326]">
+      <nav className=" h-16 px-5 pt-4 text-xl flex decoration-white underline">
+        <h1 className="text-center w-full font-bold text-3xl text-white">
+          Welcome to The Collection page{" "}
+        </h1>
+        <Link to={"/"}>
+          <button className="rounded-xl px-2 py-1.5 active:scale-90 cursor-pointer bg-[#C0C1FF] text-blue-700 font-bold">
+            clickToHome
+          </button>
+        </Link>
+      </nav>
 
-
-    <div className='flex gap-5 h-full w-full py-4 items-center px-4  flex-wrap'>
-
- 
-  {returnedData.map((elem,idx)=>{
-    return <CollectionCard elem={elem} idx={idx} handleRemove={handleRemove}/>
-  })}
-     </div>
+      <div className="flex gap-5 h-full w-full py-4 items-center px-4  flex-wrap">
+        {returnedData.map((elem, idx) => {
+          return (
+            <CollectionCard elem={elem} idx={idx} handleRemove={handleRemove} />
+          );
+        })}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Collection
+export default Collection;
