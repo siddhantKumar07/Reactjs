@@ -5,7 +5,7 @@ import { Routes,Route } from 'react-router-dom'
 const App = () => {
  
   return (
-    <div className='h-screen w-full bg-sky-700 text-white '>
+    <div className='h-full w-full  text-white '>
 <Routes>
 <Route path='/' element={<Home/>}/>
 <Route path='/collection'element={<Collection/>} />

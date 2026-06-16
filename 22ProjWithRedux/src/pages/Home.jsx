@@ -4,7 +4,7 @@ import Tabs from '../components/Tabs'
 import ResultGrid from '../components/ResultGrid'
 const Home = () => {
   return (
-   <div className=' w-full h-screen p-[1px] bg-sky-700 text-white '>
+   <div className=' w-full h-full  text-white '>
  <SearchBar/>
  <ResultGrid/>
     </div>

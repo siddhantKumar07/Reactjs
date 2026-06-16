@@ -1,9 +1,10 @@
 @import "tailwindcss";
-/* 
 
-#hover:hover #title{
-    padding: 10px 12px;
-    background:linear-gradient(transparent,black);
-    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
-} */
+#hover:hover .title{
+   display: flex;
+} 
+#hover:hover img{
+    transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(1.1);
+}
  

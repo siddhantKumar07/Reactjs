@@ -25,14 +25,14 @@ let data =JSON.parse(localStorage.getItem("collection"))||[]
 
 
   return (
-    <div className='flex flex-col w-full h-screen'> 
-    <nav className=' h-16 px-5 pt-4 text-xl flex decoration-black underline'>
-        <h1 className='text-center w-full font-bold text-3xl text-black'>Welcome to The Collection page </h1>
-  <Link to={'/'}><button className='border-2 border-white rounded-xl px-2 py-1.5 active:scale-90 cursor-pointer'>clickToHome</button></Link>
+    <div className='flex flex-col w-full h-full bg-[#0B1326]'> 
+    <nav className=' h-16 px-5 pt-4 text-xl flex decoration-white underline'>
+        <h1 className='text-center w-full font-bold text-3xl text-white'>Welcome to The Collection page </h1>
+  <Link to={'/'}><button className='rounded-xl px-2 py-1.5 active:scale-90 cursor-pointer bg-[#C0C1FF] text-blue-700 font-bold'>clickToHome</button></Link>
     </nav>
 
 
-    <div className='flex gap-2 h-[92%] w-full py-4 items-center px-10 overflow-auto flex-wrap'>
+    <div className='flex gap-5 h-full w-full py-4 items-center px-4  flex-wrap'>
 
  
   {returnedData.map((elem,idx)=>{
