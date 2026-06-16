@@ -1,14 +1,16 @@
 import React from 'react'
-import SearchBar from './components/SearchBar'
-import Tabs from './components/Tabs'
-import ResultGrid from './components/ResultGrid'
+import Home from './pages/Home'
+import Collection from './pages/Collection'
+import { Routes,Route } from 'react-router-dom'
 const App = () => {
  
   return (
-    <div className='h-screen w-full bg-sky-700 text-white '>
- <SearchBar/>
- <Tabs/>
- <ResultGrid/>
+    <div className='h-screen w-full bg-sky-700 text-white  pt-4 px-7'>
+<Routes>
+<Route path='/' element={<Home/>}/>
+<Route path='/collection'element={<Collection/>} />
+</Routes>
+
     </div>
   )
 }
