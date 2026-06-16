@@ -65,7 +65,7 @@ useEffect(()=>{
  if(loading) return <h1>Loading....</h1>
 
   return (
-    <div className=' scrollbar-thumb-red-700  h-[80vh] w-full py-2 overflow-auto my-2 flex items-center justify-center gap-2 flex-wrap'>
+    <div className=' scrollbar-thumb-red-700 h-[80.5%] w-full py-2 overflow-scroll my-2 flex items-center justify-center gap-2 flex-wrap'>
       {results.map((elem ,idx)=>{
        return <ResultCard key={elem.id || idx} elem={elem}/>
       })}
