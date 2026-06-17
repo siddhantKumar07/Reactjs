@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../utils/axios";
+
 const TopNav = () => {
   const [value, setValue] = useState("");
 
-  const GetData = async () => {
-    try {
-      const d = await axios.get(`/search/multi?query=la`);
-      console.log(d);
-      
-    } catch (err) {
-      console.log(err);
+  const getSearch =async()=>{
+    try{
+   const response = await axios.get(`/search/multi?query=${value}`)
+   console.log(response)
+    }
+    catch(error){
+      console.log(error)
     }
   }
-      useEffect(()=>{
-        GetData()
-    },[]);
+  useEffect(() => {
+   getSearch()
+  }, [value])
+  
+
   return (
     <div className="h-[10nvh] relative w-full flex items-center gap-2 justify-center ">
       <i className="text-2xl mr-2 ri-search-line"></i>
@@ -38,7 +41,7 @@ const TopNav = () => {
       )}
 
       <div className="scroll scrollbar-thumb-cyan-800 scrollbar-thumb- absolute top max-h-[50vh] w-[50%] top-[90%] bg-zinc-200 overflow-auto">
-        {/* <Link className='text-zinc-600 hover:bg-zinc-300 hover:text-black w-full flex items-start p-8 text-2xl border-b-4 border-zinc-100 '>
+           {/* <Link className='text-zinc-600 hover:bg-zinc-300 hover:text-black w-full flex items-start p-8 text-2xl border-b-4 border-zinc-100 '>
         <img src="" alt="" />
         <span>hello</span>
         </Link> */}
