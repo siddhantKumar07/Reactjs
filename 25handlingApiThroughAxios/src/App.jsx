@@ -8,6 +8,10 @@ const App = () => {
   });
 
   const postData = async () => {
+    if(formDetails.name===""||formDetails.age===""){
+      alert("enter the value in both")
+      return
+    }
     const response = await axios({
       url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
       method: "post",
@@ -45,8 +49,18 @@ const App = () => {
 
   // for to edit the user
 
-  const editData = (user) => {
-
+  const editData = async() => {
+const response = await axios({
+      url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
+      method: "put",
+      data: formDetails,
+    });
+    setFormDetails({
+      name: "",
+      age: "",
+    });
+    console.log(response.data);
+    handleClick();
   };
 
   return (
@@ -107,7 +121,7 @@ const App = () => {
               className="h-40 w-50 bg-sky-500 rounded px-3 py-1"
               key={indivi.id}
             >
-              <h1 className="text-2xl font-bold">{indivi.name}</h1>
+              <h1 className="text-xl font-bold">{indivi.name}</h1>
               <p className="text-2xl font-bold mt-3">{indivi.age}</p>
               <button
                 className="px-6 rounded-xl mt-3 ml-16 active:scale-90 cursor-pointer py-2 bg-black text-white"
