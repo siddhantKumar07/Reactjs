@@ -14,17 +14,13 @@ const App = () => {
       data: formDetails,
     });
     setFormDetails({
-    name: "",
-    age: "",
-  })
+      name: "",
+      age: "",
+    });
     console.log(response.data);
     handleClick();
   };
-  const config = {
-    url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
-  };
 
-  console.log(formDetails);
   const handleForm = (e) => {
     const { name, value } = e.target;
     setFormDetails((prev) => {
@@ -33,12 +29,12 @@ const App = () => {
         [name]: value,
       };
     });
-
-
   };
 
   const handleClick = async () => {
-    const response = await axios(config);
+    const response = await axios({
+      url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
+    });
     setUser(response.data);
     console.log(response.data);
   };
@@ -47,21 +43,29 @@ const App = () => {
     handleClick();
   }, []);
 
+  // for to edit the user
+
+  const editData = (user) => {
+
+  };
+
   return (
     <div className="flex items-center flex-col">
-      <div className="h-[30vh] w-[50%] py-25 px-10">
-        <form className=" flex item-center">
+      <div className="h-[40vh] w-[50%] py-25 items-center gap-8 justify-between px-10 flex flex-col">
+        <form className=" flex item-center gap-8">
           <input
+            value={formDetails.name}
             onChange={(e) => {
               handleForm(e);
             }}
-            className="py-3 px-5 border-2 border-black"
+            className="py-3 px-5 text-xl font-bold border-2 border-black rounded"
             type="text"
             name="name"
             placeholder="name"
           />
           <input
-            className="py-3 px-5 border-2z border-black"
+            value={formDetails.age}
+            className="py-3 px-5 text-xl font-bold border-2 border-black rounded"
             type="text"
             name="age"
             placeholder="age"
@@ -70,30 +74,49 @@ const App = () => {
             }}
           />
         </form>
+
+        <div className="flex gap-3">
+          {/* <button
+            className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
+            onClick={handleClick}
+          >
+            FetchData
+          </button> */}
+        {formDetails.editMode?(
+          <button
+            className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
+            onClick={editData}
+          >
+            editData
+          </button>)
+          :
+          (<button
+            className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
+            onClick={postData}
+          >
+            postData
+          </button>)}
+
+        </div>
       </div>
-      <div className="flex w-full items-center justify-center gap-10">
-        <button
-          className="bg-blue-400 py-4 px-2 ml-10 cursor-pointer rounded"
-          onClick={handleClick}
-        >
-          FetchData
-        </button>
-        <button
-          className="bg-blue-400 py-4 px-2 ml-10 cursor-pointer rounded"
-          onClick={postData}
-        >
-          postData
-        </button>
-      </div>
-      <div className="h-[50vh] w-full border-2 flex flex-wrap gap-5 overflow-auto border-red-700">
-        {user.map((user) => {
+
+      <div className="h-[60vh] w-full px-14 py-10 border-2 flex flex-wrap gap-5 overflow-auto border-red-700">
+        {user.map((indivi) => {
           return (
             <div
-              className="h-30 w-30 bg-sky-500 rounded px-3 py-3"
-              key={user.id}
+              className="h-40 w-50 bg-sky-500 rounded px-3 py-1"
+              key={indivi.id}
             >
-              <h1>{user.name}</h1>
-              <p>{user.age}</p>
+              <h1 className="text-2xl font-bold">{indivi.name}</h1>
+              <p className="text-2xl font-bold mt-3">{indivi.age}</p>
+              <button
+                className="px-6 rounded-xl mt-3 ml-16 active:scale-90 cursor-pointer py-2 bg-black text-white"
+                onClick={() => {
+                 setFormDetails({...indivi,editMode:true});;
+                }}
+              >
+                Edit
+              </button>
             </div>
           );
         })}
