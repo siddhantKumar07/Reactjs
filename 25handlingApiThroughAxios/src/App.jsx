@@ -8,9 +8,9 @@ const App = () => {
   });
 
   const postData = async () => {
-    if(formDetails.name===""||formDetails.age===""){
-      alert("enter the value in both")
-      return
+    if (formDetails.name === "" || formDetails.age === "") {
+      alert("enter the value in both");
+      return;
     }
     const response = await axios({
       url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
@@ -49,9 +49,9 @@ const App = () => {
 
   // for to edit the user
 
-  const editData = async() => {
-const response = await axios({
-      url: "https://6a34d42a8248ee962fa5af71.mockapi.io/users",
+  const editData = async () => {
+    const response = await axios({
+      url: `https://6a34d42a8248ee962fa5af71.mockapi.io/users/${formDetails.id}`,
       method: "put",
       data: formDetails,
     });
@@ -59,9 +59,16 @@ const response = await axios({
       name: "",
       age: "",
     });
-    console.log(response.data);
     handleClick();
   };
+
+  const deleteData=async(id)=>{
+await axios({
+      url: `https://6a34d42a8248ee962fa5af71.mockapi.io/users/${id}`,
+      method: "delete",
+    });
+    handleClick()
+  }
 
   return (
     <div className="flex items-center flex-col">
@@ -96,21 +103,21 @@ const response = await axios({
           >
             FetchData
           </button> */}
-        {formDetails.editMode?(
-          <button
-            className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
-            onClick={editData}
-          >
-            editData
-          </button>)
-          :
-          (<button
-            className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
-            onClick={postData}
-          >
-            postData
-          </button>)}
-
+          {formDetails.editMode ? (
+            <button
+              className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
+              onClick={editData}
+            >
+              editData
+            </button>
+          ) : (
+            <button
+              className="bg-blue-400 py-3 px-2 ml-10 cursor-pointer rounded"
+              onClick={postData}
+            >
+              postData
+            </button>
+          )}
         </div>
       </div>
 
@@ -118,19 +125,29 @@ const response = await axios({
         {user.map((indivi) => {
           return (
             <div
-              className="h-40 w-50 bg-sky-500 rounded px-3 py-1"
+              className="h-40 w-50 bg-sky-500 rounded px-3 py-1 flex items-start gap-2 justify-center flex-col"
               key={indivi.id}
             >
               <h1 className="text-xl font-bold">{indivi.name}</h1>
               <p className="text-2xl font-bold mt-3">{indivi.age}</p>
-              <button
-                className="px-6 rounded-xl mt-3 ml-16 active:scale-90 cursor-pointer py-2 bg-black text-white"
-                onClick={() => {
-                 setFormDetails({...indivi,editMode:true});;
-                }}
-              >
-                Edit
-              </button>
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  className="px-4 rounded-xl active:scale-90 cursor-pointer py-2 bg-black text-white"
+                  onClick={() => {
+                    setFormDetails({ ...indivi, editMode: true });
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="px-4 rounded-xl active:scale-90 cursor-pointer py-2 bg-black text-white"
+                  onClick={() => {
+                    deleteData(indivi.id)
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           );
         })}
