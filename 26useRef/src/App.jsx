@@ -16,6 +16,12 @@ const App = () => {
   // by using ref you can store values on anything and it does not change after re-render 
 
   const [value, setValue] = useState(0)
+  const refvalue = useRef(0)
+
+  const handleref=()=>{ // it will not re render the component and also store the current value it does not change when re render happens but when you do same with the variable so the variable count starts again with initial value
+    refvalue.current+=1;
+    console.log(refvalue.current)
+  }
   useEffect(()=>{
     console.log("re render chala"); // it runs whenevr the value changes
   })
@@ -37,6 +43,10 @@ const App = () => {
         onClick={()=>{
           setValue(value+1)
         }}>click</button>
+        <button className='bg-black text-white rounded px-2 py-1'
+        onClick={()=>{
+          handleref()
+        }}>clickref</button>
       </div>
     </div>
   )
