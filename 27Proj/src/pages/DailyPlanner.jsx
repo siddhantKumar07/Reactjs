@@ -62,11 +62,11 @@ const DailyPlanner = () => {
   }
 
   return (
-    <div className='h-full bg-[#0B1326] w-full p-8 min-h-screen'>
+    <div className='min-h-screen w-full bg-[#0B1326] p-5 sm:p-8'>
       {/* Header */}
-      <div className='flex justify-between items-center mb-8'>
-        <h1 className='text-white text-3xl font-bold'>Your Daily Planner</h1>
-        <div className='flex gap-4'>
+      <div className='mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+        <h1 className='text-3xl font-bold text-white'>Your Daily Planner</h1>
+        <div className='flex flex-wrap gap-4'>
           <button
             onClick={clearAllTasks}
             className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all'
@@ -80,7 +80,7 @@ const DailyPlanner = () => {
       </div>
 
       {/* Time Slots Grid */}
-      <div className='grid grid-cols-2 gap-6'>
+      <div className='grid grid-cols-1 gap-5 lg:grid-cols-2'>
         {timeSlots.map((slot, index) => (
           <div key={index} className='bg-[#0d1b2a] border border-cyan-900 rounded-lg p-6 hover:border-cyan-400 transition-all'>
             {/* Time Header */}
@@ -99,11 +99,6 @@ const DailyPlanner = () => {
             />
           </div>
         ))}
-      </div>
-
-      {/* Footer */}
-      <div className='text-center text-gray-600 text-xs mt-12'>
-        © 2025 Luxdox Pro Daily Planner. All tasks are auto-saved.
       </div>
     </div>
   )

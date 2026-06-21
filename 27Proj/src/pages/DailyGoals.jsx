@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const DailyGoals = () => {
   const [goals, setGoals] = useState([])
-
   const [goalInput, setGoalInput] = useState('')
 
-  // Load goals from localStorage on component mount
   useEffect(() => {
     const savedGoals = localStorage.getItem('dailyGoals')
     if (savedGoals) {
@@ -18,7 +16,6 @@ const DailyGoals = () => {
     }
   }, [])
 
-  // Save goals to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('dailyGoals', JSON.stringify(goals))
   }, [goals])
@@ -26,7 +23,7 @@ const DailyGoals = () => {
   const addGoal = () => {
     if (goalInput.trim()) {
       const newGoal = {
-        id: goals.length > 0 ? Math.max(...goals.map(g => g.id)) + 1 : 1,
+        id: goals.length > 0 ? Math.max(...goals.map((g) => g.id)) + 1 : 1,
         title: goalInput,
         date: new Date().toLocaleDateString('en-GB'),
         completed: false
@@ -37,13 +34,11 @@ const DailyGoals = () => {
   }
 
   const toggleGoal = (id) => {
-    // Remove the goal when completed
-    const updatedGoals = goals.filter(goal => goal.id !== id)
-    setGoals(updatedGoals)
+    setGoals(goals.filter((goal) => goal.id !== id))
   }
 
   const deleteGoal = (id) => {
-    setGoals(goals.filter(goal => goal.id !== id))
+    setGoals(goals.filter((goal) => goal.id !== id))
   }
 
   const clearAllGoals = () => {
@@ -52,43 +47,41 @@ const DailyGoals = () => {
     }
   }
 
-  const completedCount = goals.filter(g => g.completed).length
-  const progressPercent = goals.length > 0 ? (completedCount / goals.length) * 100 : 0
-
   return (
-    <div className='h-full bg-[#0B1326] w-full p-8 min-h-screen'>
-      {/* Header */}
-      <div className='flex justify-between items-center mb-12'>
-        <h1 className='text-white text-4xl font-bold'>Daily Goals</h1>
-        <div className='flex gap-4'>
+    <div className='min-h-screen w-full bg-[#0B1326] p-5 sm:p-8'>
+      <div className='mb-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+        <h1 className='text-3xl font-bold text-white sm:text-4xl'>Daily Goals</h1>
+        <div className='flex flex-wrap gap-4'>
           <button
             onClick={clearAllGoals}
-            className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all'
+            className='rounded-lg cursor-pointer bg-red-600 px-4 py-2 font-bold text-white transition-all hover:bg-red-700'
           >
             Clear All
           </button>
-          <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
-            Click
+          <Link
+            to='/'
+            className='rounded-lg cursor-pointer bg-cyan-400 px-4 py-2 font-bold text-black transition-all hover:bg-cyan-500'
+          >
+            Back
           </Link>
         </div>
       </div>
 
-      {/* Input Section */}
-      <div className='max-w-3xl mx-auto mb-12'>
-        <div className='bg-gradient-to-br from-purple-900/50 to-indigo-900/50 border border-purple-500/30 rounded-2xl p-8'>
-          <h2 className='text-cyan-400 text-xl font-bold mb-6 text-center'>What's Your Goal Today?</h2>
-          <div className='flex gap-4'>
+      <div className='mx-auto mb-12 max-w-3xl'>
+        <div className='rounded-2xl border border-purple-500/30 bg-gradient-to-br from-purple-900/50 to-indigo-900/50 p-5 sm:p-8'>
+          <h2 className='mb-6 text-center text-xl font-bold text-cyan-400'>What's Your Goal Today?</h2>
+          <div className='flex flex-col gap-4 sm:flex-row'>
             <input
-              type="text"
+              type='text'
               placeholder='Enter your goal...'
               value={goalInput}
               onChange={(e) => setGoalInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && addGoal()}
-              className='flex-1 bg-white/10 border border-cyan-400/50 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-all'
+              onKeyDown={(e) => e.key === 'Enter' && addGoal()}
+              className='min-w-0 flex-1 rounded-full border border-cyan-400/50 bg-white/10 px-6 py-3 text-white placeholder-gray-400 transition-all focus:border-cyan-400 focus:outline-none'
             />
             <button
               onClick={addGoal}
-              className='bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-full transition-all'
+              className='rounded-full bg-green-500 px-8 py-3 cursor-pointer font-bold text-white transition-all hover:bg-green-600'
             >
               Set Goal
             </button>
@@ -96,52 +89,45 @@ const DailyGoals = () => {
         </div>
       </div>
 
-      {/* Progress Bar */}
-      <div className='max-w-3xl mx-auto mb-12'>
-        <div className='flex justify-between items-center mb-3'>
-          <span className='text-gray-400 text-sm'>Daily Progress</span>
-          <span className='text-cyan-400 font-bold'>{goals.length} Goals Remaining</span>
+      <div className='mx-auto mb-12 max-w-3xl'>
+        <div className='mb-3 flex flex-wrap items-center justify-between gap-2'>
+          <span className='text-sm text-gray-400'>Daily Progress</span>
+          <span className='font-bold text-cyan-400'>{goals.length} Goals Remaining</span>
         </div>
-        <div className='w-full bg-gray-700 rounded-full h-3'>
-          <div
-            className='bg-gradient-to-r from-green-400 to-green-500 h-3 rounded-full transition-all duration-300'
-            style={{ width: '100%' }}
-          ></div>
+        <div className='h-3 w-full rounded-full bg-gray-700'>
+          <div className='h-3 rounded-full bg-gradient-to-r from-green-400 to-green-500'></div>
         </div>
       </div>
 
-      {/* Goals List */}
-      <div className='max-w-3xl mx-auto'>
+      <div className='mx-auto max-w-3xl'>
         <div className='space-y-4'>
           {goals.length === 0 ? (
-            <div className='bg-[#0d1b2a] border border-cyan-900/50 rounded-2xl p-12 text-center'>
-              <i className='ri-target-2-line text-5xl text-green-600 mb-4 block'></i>
-              <p className='text-green-400 text-lg font-bold'>🎉 All goals completed for today!</p>
+            <div className='rounded-2xl border border-cyan-900/50 bg-[#0d1b2a] p-8 text-center sm:p-12'>
+              <i className='ri-target-2-line mb-4 block text-5xl text-green-600'></i>
+              <p className='text-lg font-bold text-green-400'>All goals completed for today!</p>
             </div>
           ) : (
             goals.map((goal) => (
               <div
                 key={goal.id}
-                className='bg-gradient-to-r from-indigo-900/40 to-purple-900/40 border border-purple-500/30 rounded-2xl p-6 hover:border-purple-500/60 transition-all group'
+                className='group rounded-2xl border border-purple-500/30 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 p-5 transition-all hover:border-purple-500/60 sm:p-6'
               >
                 <div className='flex items-center gap-4'>
                   <input
-                    type="checkbox"
+                    type='checkbox'
                     onChange={() => toggleGoal(goal.id)}
-                    className='w-6 h-6 rounded-full border-2 border-cyan-400 cursor-pointer accent-green-500'
+                    className='h-6 w-6 cursor-pointer rounded-full border-2 border-cyan-400 accent-green-500'
                   />
-                  <div className='flex-1'>
-                    <h3 className='font-bold text-lg text-white'>
-                      {goal.title}
-                    </h3>
-                    <p className='text-gray-500 text-sm'>
+                  <div className='min-w-0 flex-1'>
+                    <h3 className='break-words text-lg font-bold text-white'>{goal.title}</h3>
+                    <p className='text-sm text-gray-500'>
                       <i className='ri-calendar-line mr-2'></i>
                       {goal.date}
                     </p>
                   </div>
                   <button
                     onClick={() => deleteGoal(goal.id)}
-                    className='text-red-400 hover:text-red-300 transition-all opacity-0 group-hover:opacity-100'
+                    className='text-red-400 opacity-100 transition-all hover:text-red-300 sm:opacity-0 sm:group-hover:opacity-100'
                   >
                     <i className='ri-delete-bin-line text-xl'></i>
                   </button>

@@ -57,21 +57,21 @@ const Todo = () => {
   const progressPercent = tasks.length > 0 ? (completedTasks / tasks.length) * 100 : 0
 
   return (
-    <div className='h-screen bg-[#0B1326] w-full flex'>
+    <div className='flex min-h-screen w-full flex-col bg-[#0B1326] lg:flex-row'>
       {/* Left Sidebar */}
-      <div className='w-[25%] bg-[#0d1b2a] p-8 border-r border-cyan-900 overflow-y-auto'>
-        <h2 className='text-cyan-400 text-lg font-bold mb-6'>Capture Task</h2>
-        <p className='text-gray-400 text-sm mb-6'>Add a new item to your focused roadmap.</p>
+      <div className='w-full border-b border-cyan-900 bg-[#0d1b2a] p-5 lg:w-80 lg:shrink-0 lg:border-b-0 lg:border-r lg:p-8'>
+        <h2 className='text-cyan-400 text-lg font-bold mb-6'>Write your Tasks</h2>
+        <p className='text-gray-400 text-sm mb-6'>Add a new item task .</p>
 
         <div className='space-y-4'>
           <div>
             <label className='text-cyan-400 text-xs font-bold mb-2 block'>TASK NAME</label>
             <input
               type="text"
-              placeholder='e.g., Finalize Q3 Report'
+              placeholder='enter the task title'
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && addTask()}
+              onKeyDown={(e) => e.key === 'Enter' && addTask()}
               className='w-full bg-[#081022] border border-cyan-900 rounded px-4 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400'
             />
           </div>
@@ -79,7 +79,7 @@ const Todo = () => {
           <div>
             <label className='text-cyan-400 text-xs font-bold mb-2 block'>DETAILS</label>
             <textarea
-              placeholder='Brief context or sub-tasks...'
+              placeholder='Enter details About tasks...'
               value={taskDetails}
               onChange={(e) => setTaskDetails(e.target.value)}
               className='w-full bg-[#081022] border border-cyan-900 rounded px-4 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400 h-24 resize-none'
@@ -117,9 +117,9 @@ const Todo = () => {
       </div>
 
       {/* Main Content */}
-      <div className='flex-1 p-8 overflow-y-auto'>
+      <div className='min-w-0 flex-1 overflow-y-auto p-5 sm:p-8'>
         {/* Header */}
-        <div className='flex justify-between items-center mb-8'>
+        <div className='mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
           <h1 className='text-white text-2xl font-bold'>Task Manager</h1>
           <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-all'>
             <i className='ri-arrow-left-line'></i>
@@ -128,7 +128,7 @@ const Todo = () => {
         </div>
 
         {/* Tabs */}
-        <div className='flex gap-6 mb-6 border-b border-cyan-900 pb-4'>
+        <div className='mb-6 flex flex-wrap gap-6 border-b border-cyan-900 pb-4'>
           <button className='text-cyan-400 font-bold border-b-2 border-cyan-400 pb-2'>Active Workflow</button>
           <button className='text-gray-500 hover:text-gray-400'>{tasks.length} Total</button>
         </div>
@@ -144,8 +144,8 @@ const Todo = () => {
                   onChange={() => toggleTask(task.id)}
                   className='w-6 h-6 rounded border-cyan-400 cursor-pointer mt-1'
                 />
-                <div className='flex-1'>
-                  <div className='flex items-center gap-3 mb-2'>
+                <div className='min-w-0 flex-1'>
+                  <div className='mb-2 flex flex-wrap items-center gap-3'>
                     <h3 className={`font-bold text-lg ${task.completed ? 'line-through text-gray-500' : 'text-white'}`}>
                       {task.title}
                     </h3>
@@ -156,7 +156,7 @@ const Todo = () => {
                     )}
                   </div>
                   <p className='text-gray-400 text-sm mb-3'>{task.description}</p>
-                  <div className='flex gap-4 text-gray-500 text-xs'>
+                  <div className='flex flex-wrap gap-4 text-xs text-gray-500'>
                     <span><i className='ri-calendar-line mr-1'></i>{task.date}</span>
                     <span><i className='ri-time-line mr-1'></i>{task.time}</span>
                     {task.attachments > 0 && <span><i className='ri-attachment-2 mr-1'></i>{task.attachments} Attachments</span>}

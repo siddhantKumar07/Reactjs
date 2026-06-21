@@ -102,27 +102,27 @@ const Pomodoro = () => {
   }
 
   return (
-    <div className='h-screen bg-[#0B1326] w-full flex flex-col items-center justify-center p-8 relative overflow-hidden'>
+    <div className='relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#0B1326] p-5 sm:p-8'>
       {/* Header */}
-      <div className='absolute top-8 left-8'>
-        <h1 className='text-white text-2xl font-bold'>Study with me !</h1>
+      <div className='absolute left-5 top-5 sm:left-8 sm:top-8'>
+        <h1 className='text-xl font-bold text-white sm:text-2xl'>Study with me !</h1>
       </div>
 
       {/* Back Button */}
-      <div className='absolute top-8 right-8 z-10'>
+      <div className='absolute right-5 top-5 z-10 sm:right-8 sm:top-8'>
         <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
           Click
         </Link>
       </div>
 
       {/* Main Card */}
-      <div className={`bg-gradient-to-br ${modes[mode].bgColor} rounded-3xl p-16 shadow-2xl max-w-2xl w-full`}>
+      <div className={`mt-16 w-full max-w-2xl rounded-2xl bg-gradient-to-br ${modes[mode].bgColor} p-5 shadow-2xl sm:mt-10 sm:p-10 lg:p-16`}>
         
         {/* Mode Tabs */}
-        <div className='flex gap-4 justify-center mb-12'>
+        <div className='mb-10 flex flex-wrap justify-center gap-3 sm:mb-12 sm:gap-4'>
           <button
             onClick={() => handleModeChange('pomodoro')}
-            className={`px-6 py-2 rounded-full font-bold transition-all ${
+            className={`cursor-pointer rounded-full px-4 py-2 font-bold transition-all active:scale-95 sm:px-6 ${
               mode === 'pomodoro'
                 ? 'bg-white text-black'
                 : 'bg-black/30 text-white hover:bg-black/50'
@@ -132,7 +132,7 @@ const Pomodoro = () => {
           </button>
           <button
             onClick={() => handleModeChange('shortBreak')}
-            className={`px-6 py-2 rounded-full font-bold transition-all ${
+            className={`cursor-pointer rounded-full px-4 py-2 font-bold transition-all active:scale-95 sm:px-6 ${
               mode === 'shortBreak'
                 ? 'bg-white text-black'
                 : 'bg-black/30 text-white hover:bg-black/50'
@@ -142,7 +142,7 @@ const Pomodoro = () => {
           </button>
           <button
             onClick={() => handleModeChange('longBreak')}
-            className={`px-6 py-2 rounded-full font-bold transition-all ${
+            className={`cursor-pointer rounded-full px-4 py-2 font-bold transition-all active:scale-95 sm:px-6 ${
               mode === 'longBreak'
                 ? 'bg-white text-black'
                 : 'bg-black/30 text-white hover:bg-black/50'
@@ -154,29 +154,29 @@ const Pomodoro = () => {
 
         {/* Timer Display */}
         <div className='text-center mb-12'>
-          <div className='text-7xl font-bold text-white tracking-wider font-mono'>
+          <div className='font-mono text-5xl font-bold tracking-normal text-white sm:text-7xl'>
             {formatTime(time)}
           </div>
         </div>
 
         {/* Control Buttons */}
-        <div className='flex gap-6 justify-center mb-8'>
+        <div className='mb-8 flex flex-wrap justify-center gap-3 sm:gap-6'>
           <button
             onClick={handleStart}
             disabled={isRunning}
-            className='bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed'
+            className='bg-white cursor-pointer active:scale-95 text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed'
           >
-            {isRunning ? '⏱️ Running' : 'Start'}
+            {isRunning ? 'Running' : 'Start'}
           </button>
           <button
             onClick={handlePause}
-            className='bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all'
+            className='bg-white cursor-pointer active:scale-95 text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all'
           >
             Pause
           </button>
           <button
             onClick={handleReset}
-            className='bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all'
+            className='bg-white cursor-pointer active:scale-95 text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all'
           >
             Reset
           </button>
