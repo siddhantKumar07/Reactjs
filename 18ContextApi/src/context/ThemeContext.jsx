@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 export const ThemeDataContext = createContext();
+
 const Theme = (props) => {
   const [theme, setTheme] = useState("light")
   return (
