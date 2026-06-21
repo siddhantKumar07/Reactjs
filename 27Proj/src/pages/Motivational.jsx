@@ -1,11 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
 const Motivational = () => {
-  const [quote] = useState({
-    text: "Challenges are what make life interested and overcoming them is what makes life meaningful.",
-    author: "Joshua J. Marine"
-  })
+  const [quotes, setQuote] = useState("")
+  const [author, setAuthor] = useState("")
+
+// for motivation page
+const fetchQuotes =async ()=>{
+  try{
+ const response = await axios.get("https://motivational-spark-api.vercel.app/api/quotes/random")
+  const data = response.data;
+  console.log(data)
+  setQuote(data.quote)
+  setAuthor(data.author)
+  }catch(err){
+    console.log(err)
+  }
+}
+
+useEffect(()=>{
+  fetchQuotes();
+},[])
 
   return (
     <div className='h-screen bg-[#0B1326] w-full flex flex-col items-center justify-center p-8 relative overflow-hidden'>
@@ -31,12 +46,12 @@ const Motivational = () => {
 
           {/* Quote Text */}
           <h2 className='text-3xl font-bold text-white text-center mb-6 leading-relaxed'>
-            "{quote.text}"
+            "{quotes}"
           </h2>
 
           {/* Author */}
           <p className='text-center text-cyan-400 text-lg font-semibold'>
-            {quote.author}
+            {author}
           </p>
         </div>
       </div>

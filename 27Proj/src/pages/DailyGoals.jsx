@@ -1,19 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const DailyGoals = () => {
-  const [goals, setGoals] = useState([
-    { id: 1, title: 'Daily Standup', date: '21/5/2025', completed: false },
-    { id: 2, title: 'Code Review', date: '21/5/2025', completed: false },
-    { id: 3, title: 'Team Meeting', date: '21/5/2025', completed: false }
-  ])
+  const [goals, setGoals] = useState([])
 
   const [goalInput, setGoalInput] = useState('')
+
+  // Load goals from localStorage on component mount
+  useEffect(() => {
+    const savedGoals = localStorage.getItem('dailyGoals')
+    if (savedGoals) {
+      try {
+        setGoals(JSON.parse(savedGoals))
+      } catch (error) {
+        console.error('Error loading goals:', error)
+      }
+    }
+  }, [])
+
+  // Save goals to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('dailyGoals', JSON.stringify(goals))
+  }, [goals])
 
   const addGoal = () => {
     if (goalInput.trim()) {
       const newGoal = {
-        id: goals.length + 1,
+        id: goals.length > 0 ? Math.max(...goals.map(g => g.id)) + 1 : 1,
         title: goalInput,
         date: new Date().toLocaleDateString('en-GB'),
         completed: false
@@ -24,13 +37,19 @@ const DailyGoals = () => {
   }
 
   const toggleGoal = (id) => {
-    setGoals(goals.map(goal => 
-      goal.id === id ? { ...goal, completed: !goal.completed } : goal
-    ))
+    // Remove the goal when completed
+    const updatedGoals = goals.filter(goal => goal.id !== id)
+    setGoals(updatedGoals)
   }
 
   const deleteGoal = (id) => {
     setGoals(goals.filter(goal => goal.id !== id))
+  }
+
+  const clearAllGoals = () => {
+    if (window.confirm('Are you sure you want to clear all goals?')) {
+      setGoals([])
+    }
   }
 
   const completedCount = goals.filter(g => g.completed).length
@@ -41,9 +60,17 @@ const DailyGoals = () => {
       {/* Header */}
       <div className='flex justify-between items-center mb-12'>
         <h1 className='text-white text-4xl font-bold'>Daily Goals</h1>
-        <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
-          Click
-        </Link>
+        <div className='flex gap-4'>
+          <button
+            onClick={clearAllGoals}
+            className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all'
+          >
+            Clear All
+          </button>
+          <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
+            Click
+          </Link>
+        </div>
       </div>
 
       {/* Input Section */}
@@ -73,12 +100,12 @@ const DailyGoals = () => {
       <div className='max-w-3xl mx-auto mb-12'>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-gray-400 text-sm'>Daily Progress</span>
-          <span className='text-cyan-400 font-bold'>{completedCount}/{goals.length}</span>
+          <span className='text-cyan-400 font-bold'>{goals.length} Goals Remaining</span>
         </div>
         <div className='w-full bg-gray-700 rounded-full h-3'>
           <div
-            className='bg-gradient-to-r from-cyan-400 to-blue-500 h-3 rounded-full transition-all duration-300'
-            style={{ width: `${progressPercent}%` }}
+            className='bg-gradient-to-r from-green-400 to-green-500 h-3 rounded-full transition-all duration-300'
+            style={{ width: '100%' }}
           ></div>
         </div>
       </div>
@@ -88,28 +115,23 @@ const DailyGoals = () => {
         <div className='space-y-4'>
           {goals.length === 0 ? (
             <div className='bg-[#0d1b2a] border border-cyan-900/50 rounded-2xl p-12 text-center'>
-              <i className='ri-target-2-line text-5xl text-gray-600 mb-4 block'></i>
-              <p className='text-gray-500 text-lg'>No goals yet. Add one to get started!</p>
+              <i className='ri-target-2-line text-5xl text-green-600 mb-4 block'></i>
+              <p className='text-green-400 text-lg font-bold'>🎉 All goals completed for today!</p>
             </div>
           ) : (
             goals.map((goal) => (
               <div
                 key={goal.id}
-                className='bg-gradient-to-r from-indigo-900/40 to-purple-900/40 border border-purple-500/30 rounded-2xl p-6 hover:border-purple-500/60 transition-all'
+                className='bg-gradient-to-r from-indigo-900/40 to-purple-900/40 border border-purple-500/30 rounded-2xl p-6 hover:border-purple-500/60 transition-all group'
               >
                 <div className='flex items-center gap-4'>
                   <input
                     type="checkbox"
-                    checked={goal.completed}
                     onChange={() => toggleGoal(goal.id)}
-                    className='w-6 h-6 rounded-full border-2 border-cyan-400 cursor-pointer accent-cyan-400'
+                    className='w-6 h-6 rounded-full border-2 border-cyan-400 cursor-pointer accent-green-500'
                   />
                   <div className='flex-1'>
-                    <h3 className={`font-bold text-lg transition-all ${
-                      goal.completed
-                        ? 'line-through text-gray-500'
-                        : 'text-white'
-                    }`}>
+                    <h3 className='font-bold text-lg text-white'>
                       {goal.title}
                     </h3>
                     <p className='text-gray-500 text-sm'>
@@ -119,7 +141,7 @@ const DailyGoals = () => {
                   </div>
                   <button
                     onClick={() => deleteGoal(goal.id)}
-                    className='text-red-400 hover:text-red-300 transition-all'
+                    className='text-red-400 hover:text-red-300 transition-all opacity-0 group-hover:opacity-100'
                   >
                     <i className='ri-delete-bin-line text-xl'></i>
                   </button>

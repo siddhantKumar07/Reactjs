@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const DailyPlanner = () => {
@@ -30,18 +30,53 @@ const DailyPlanner = () => {
     }, {})
   )
 
+  // Load tasks from localStorage on component mount
+  useEffect(() => {
+    const savedTasks = localStorage.getItem('dailyPlannerTasks')
+    if (savedTasks) {
+      try {
+        setTasks(JSON.parse(savedTasks))
+      } catch (error) {
+        console.error('Error loading tasks:', error)
+      }
+    }
+  }, [])
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('dailyPlannerTasks', JSON.stringify(tasks))
+  }, [tasks])
+
   const handleTaskChange = (slot, value) => {
     setTasks({ ...tasks, [slot]: value })
   }
 
+  const clearAllTasks = () => {
+    if (window.confirm('Are you sure you want to clear all tasks?')) {
+      const emptyTasks = timeSlots.reduce((acc, slot) => {
+        acc[slot] = ''
+        return acc
+      }, {})
+      setTasks(emptyTasks)
+    }
+  }
+
   return (
-    <div className='h-full bg-[#0B1326] w-full p-8'>
+    <div className='h-full bg-[#0B1326] w-full p-8 min-h-screen'>
       {/* Header */}
       <div className='flex justify-between items-center mb-8'>
         <h1 className='text-white text-3xl font-bold'>Your Daily Planner</h1>
-        <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
-          Back
-        </Link>
+        <div className='flex gap-4'>
+          <button
+            onClick={clearAllTasks}
+            className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-all'
+          >
+            Clear All
+          </button>
+          <Link to={'/'} className='bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded-lg transition-all'>
+            Back
+          </Link>
+        </div>
       </div>
 
       {/* Time Slots Grid */}
@@ -49,7 +84,8 @@ const DailyPlanner = () => {
         {timeSlots.map((slot, index) => (
           <div key={index} className='bg-[#0d1b2a] border border-cyan-900 rounded-lg p-6 hover:border-cyan-400 transition-all'>
             {/* Time Header */}
-            <div className='text-cyan-400 font-bold text-sm mb-4'>
+            <div className='text-cyan-400 font-bold text-sm mb-4 flex items-center gap-2'>
+              <i className='ri-time-line'></i>
               {slot}
             </div>
 
@@ -63,6 +99,11 @@ const DailyPlanner = () => {
             />
           </div>
         ))}
+      </div>
+
+      {/* Footer */}
+      <div className='text-center text-gray-600 text-xs mt-12'>
+        © 2025 Luxdox Pro Daily Planner. All tasks are auto-saved.
       </div>
     </div>
   )

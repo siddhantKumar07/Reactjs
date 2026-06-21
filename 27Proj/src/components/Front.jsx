@@ -43,7 +43,7 @@ const [weather, setWeather] = useState(null)
         </div>
         <div className='h-full w-[40%]  flex flex-col gap-3 items-end justify-end py-4 px-5'>
           <div className='flex'>
-            <h2 className='text-white font-bold'>{weather?.current?.temp_c}°C</h2>
+            <h2 className='text-white font-bold text-2xl'>{weather?.current?.temp_c}°C</h2>
             {weather?.current?.condition?.icon && <img src={`https:${weather.current.condition.icon}`} alt="condition img" />}
           </div>
           <h3 className='font-bold text-white text-xl'>{weather?.current?.condition?.text}</h3>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Todo = () => {
@@ -12,13 +12,30 @@ const Todo = () => {
   const [taskDetails, setTaskDetails] = useState('')
   const [isImportant, setIsImportant] = useState(false)
 
+  // Load tasks from localStorage on component mount
+  useEffect(() => {
+    const savedTasks = localStorage.getItem('tasks')
+    if (savedTasks) {
+      try {
+        setTasks(JSON.parse(savedTasks))
+      } catch (error) {
+        console.error('Error loading tasks:', error)
+      }
+    }
+  }, [])
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
+
   const addTask = () => {
     if (taskName.trim()) {
       const newTask = {
-        id: tasks.length + 1,
+        id: tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1,
         title: taskName,
         description: taskDetails,
-        tag: '',
+        tag: isImportant ? 'URGENT' : '',
         date: 'Today',
         time: new Date().toLocaleTimeString(),
         attachments: 0,
@@ -35,10 +52,17 @@ const Todo = () => {
     setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task))
   }
 
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id))
+  }
+
+  const completedTasks = tasks.filter(t => t.completed).length
+  const progressPercent = tasks.length > 0 ? (completedTasks / tasks.length) * 100 : 0
+
   return (
     <div className='h-screen bg-[#0B1326] w-full flex'>
       {/* Left Sidebar */}
-      <div className='w-[25%] bg-[#0d1b2a] p-8 border-r border-cyan-900'>
+      <div className='w-[25%] bg-[#0d1b2a] p-8 border-r border-cyan-900 overflow-y-auto'>
         <h2 className='text-cyan-400 text-lg font-bold mb-6'>Capture Task</h2>
         <p className='text-gray-400 text-sm mb-6'>Add a new item to your focused roadmap.</p>
 
@@ -50,6 +74,7 @@ const Todo = () => {
               placeholder='e.g., Finalize Q3 Report'
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && addTask()}
               className='w-full bg-[#081022] border border-cyan-900 rounded px-4 py-2 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400'
             />
           </div>
@@ -86,16 +111,16 @@ const Todo = () => {
         {/* Daily Progress */}
         <div className='mt-12'>
           <h3 className='text-gray-400 text-xs font-bold mb-3'>DAILY PROGRESS</h3>
-          <div className='text-3xl font-bold text-cyan-400 mb-3'>72%</div>
+          <div className='text-3xl font-bold text-cyan-400 mb-3'>{Math.round(progressPercent)}%</div>
           <div className='w-full bg-gray-700 rounded-full h-2 mb-2'>
-            <div className='bg-cyan-400 h-2 rounded-full' style={{ width: '72%' }}></div>
+            <div className='bg-cyan-400 h-2 rounded-full transition-all' style={{ width: `${progressPercent}%` }}></div>
           </div>
-          <p className='text-gray-500 text-xs'>You've completed 6 tasks today. Stay sharp.</p>
+          <p className='text-gray-500 text-xs'>You've completed {completedTasks} of {tasks.length} tasks.</p>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className='flex-1 p-8'>
+      <div className='flex-1 p-8 overflow-y-auto'>
         {/* Header */}
         <div className='flex justify-between items-center mb-8'>
           <h1 className='text-white text-2xl font-bold'>Task Manager</h1>
@@ -108,7 +133,7 @@ const Todo = () => {
         {/* Tabs */}
         <div className='flex gap-6 mb-6 border-b border-cyan-900 pb-4'>
           <button className='text-cyan-400 font-bold border-b-2 border-cyan-400 pb-2'>Active Workflow</button>
-          <button className='text-gray-500 hover:text-gray-400'>12 Total</button>
+          <button className='text-gray-500 hover:text-gray-400'>{tasks.length} Total</button>
         </div>
 
         {/* Filter and Sort */}
@@ -150,6 +175,12 @@ const Todo = () => {
                     {task.attachments > 0 && <span><i className='ri-attachment-2 mr-1'></i>{task.attachments} Attachments</span>}
                   </div>
                 </div>
+                <button
+                  onClick={() => deleteTask(task.id)}
+                  className='text-red-400 hover:text-red-300 transition-all'
+                >
+                  <i className='ri-delete-bin-line text-xl'></i>
+                </button>
               </div>
             </div>
           ))}

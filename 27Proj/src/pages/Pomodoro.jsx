@@ -1,15 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Pomodoro = () => {
-  const [mode, setMode] = useState('pomodoro') // pomodoro, shortBreak, longBreak
-  const [time, setTime] = useState(25 * 60) // 25 minutes in seconds
+  const [mode, setMode] = useState('pomodoro')
+  const [time, setTime] = useState(25 * 60)
   const [isRunning, setIsRunning] = useState(false)
+  const [sessionsCompleted, setSessionsCompleted] = useState(0)
 
   const modes = {
     pomodoro: { label: 'Pomodoro', duration: 25 * 60, bgColor: 'from-blue-600 to-blue-700' },
     shortBreak: { label: 'Short Break', duration: 5 * 60, bgColor: 'from-red-600 to-red-700' },
     longBreak: { label: 'Long Break', duration: 15 * 60, bgColor: 'from-teal-600 to-teal-700' }
+  }
+
+  // Load data from localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem('pomodoroData')
+    if (savedData) {
+      try {
+        const data = JSON.parse(savedData)
+        setSessionsCompleted(data.sessionsCompleted || 0)
+      } catch (error) {
+        console.error('Error loading data:', error)
+      }
+    }
+  }, [])
+
+  // Save data to localStorage
+  useEffect(() => {
+    localStorage.setItem('pomodoroData', JSON.stringify({ sessionsCompleted }))
+  }, [sessionsCompleted])
+
+  // Timer countdown logic
+  useEffect(() => {
+    let interval
+    if (isRunning && time > 0) {
+      interval = setInterval(() => {
+        setTime(time - 1)
+      }, 1000)
+    } else if (time === 0 && isRunning) {
+      // Timer completed
+      setIsRunning(false)
+      playNotification()
+      
+      if (mode === 'pomodoro') {
+        setSessionsCompleted(sessionsCompleted + 1)
+        // Auto switch to short break
+        setMode('shortBreak')
+        setTime(modes.shortBreak.duration)
+      } else {
+        // Switch back to pomodoro
+        setMode('pomodoro')
+        setTime(modes.pomodoro.duration)
+      }
+    }
+    return () => clearInterval(interval)
+  }, [isRunning, time, mode, sessionsCompleted])
+
+  const playNotification = () => {
+    // Create a simple beep sound
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    const oscillator = audioContext.createOscillator()
+    const gainNode = audioContext.createGain()
+    
+    oscillator.connect(gainNode)
+    gainNode.connect(audioContext.destination)
+    
+    oscillator.frequency.value = 800
+    oscillator.type = 'sine'
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime)
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5)
+    
+    oscillator.start(audioContext.currentTime)
+    oscillator.stop(audioContext.currentTime + 0.5)
   }
 
   const handleModeChange = (newMode) => {
@@ -96,12 +160,13 @@ const Pomodoro = () => {
         </div>
 
         {/* Control Buttons */}
-        <div className='flex gap-6 justify-center'>
+        <div className='flex gap-6 justify-center mb-8'>
           <button
             onClick={handleStart}
-            className='bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all'
+            disabled={isRunning}
+            className='bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed'
           >
-            Start
+            {isRunning ? '⏱️ Running' : 'Start'}
           </button>
           <button
             onClick={handlePause}
@@ -115,6 +180,13 @@ const Pomodoro = () => {
           >
             Reset
           </button>
+        </div>
+
+        {/* Sessions Completed */}
+        <div className='text-center'>
+          <p className='text-white text-lg font-semibold'>
+            Sessions Completed: <span className='text-yellow-300'>{sessionsCompleted}</span>
+          </p>
         </div>
       </div>
     </div>
