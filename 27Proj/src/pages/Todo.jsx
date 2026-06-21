@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 
 const Todo = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: 'Cloud Architecture Presentation', tag: 'URGENT', description: 'Review AWS Lambda infrastructure diagrams and finalize the scalability section for tomorrow\'s board meeting.', date: 'Today', time: '5:38 PM', attachments: 3, completed: false },
-    { id: 2, title: 'Onboard New Designer', tag: 'PENDING', description: 'Send access invites for Figma, Slack, and Linear t. Schedule initial 1-on-1 for project orientation.', date: 'Wed', time: '10:38 AM', attachments: 0, completed: false },
-    { id: 3, title: 'Research Micro-interactions', tag: '', description: 'Find inspiration for CSS/SVG animations in high-end productivity dashboards. Focus on glass morphism and glow effects.', date: 'Est', time: '2 hours', attachments: 0, completed: false }
   ])
 
   const [taskName, setTaskName] = useState('')
@@ -134,16 +131,6 @@ const Todo = () => {
         <div className='flex gap-6 mb-6 border-b border-cyan-900 pb-4'>
           <button className='text-cyan-400 font-bold border-b-2 border-cyan-400 pb-2'>Active Workflow</button>
           <button className='text-gray-500 hover:text-gray-400'>{tasks.length} Total</button>
-        </div>
-
-        {/* Filter and Sort */}
-        <div className='flex justify-end gap-4 mb-6'>
-          <button className='bg-[#0d1b2a] border border-cyan-900 text-gray-300 px-4 py-2 rounded-lg hover:border-cyan-400 transition-all'>
-            <i className='ri-filter-line mr-2'></i>Filter
-          </button>
-          <button className='bg-[#0d1b2a] border border-cyan-900 text-gray-300 px-4 py-2 rounded-lg hover:border-cyan-400 transition-all'>
-            <i className='ri-sort-asc mr-2'></i>Sort
-          </button>
         </div>
 
         {/* Tasks List */}
