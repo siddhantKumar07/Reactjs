@@ -1,19 +1,64 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const App = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [conpass, setConpass] = useState("")
+const handleForm=(e)=>{
+e.preventDefault()
+if(password!==conpass){
+  alert("the conform password should be match to the pass ");
+  return;
+}
+console.log(`name : ${name} , email : ${email} ,pass: ${password} , confirm pass : ${conpass}`)
+setConpass("")
+setName("")
+setEmail("")
+setPassword("")
+}
   return (
-    <div className='h-screen w-full flex items-center justify-center p-1'>
-      <form className=' px-7 w-[30%] h-[70%] flex flex-col gap-4  justify-center bg-sky-100 rounded border-2 border-cyan-500'>
-      <h1 className='text-3xl text-center font-bold underline'>Create an Account</h1>
-        <input type="text" placeholder='Enter your name' className='rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4' />
-        <input type="email" placeholder='Enter your email' className='rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4' />
-        <input type="password" placeholder='Enter your password' className='rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4'/>
-        <input type="password" placeholder='Confirm password' className='rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4' />
-        <button className='px-5 py-3 bg-emerald-800 rounded-2xl w-full active:scale-90 cursor-pointer text-xl text-white font-bold'>Submit</button>
+    <div className="h-screen w-full flex items-center justify-center p-1">
+      <form onSubmit={(e)=>{
+        handleForm(e)
+      }} className=" px-7 w-[30%] h-[70%] flex flex-col gap-4  justify-center bg-sky-100 rounded border-2 border-cyan-500">
+        <h1 className="text-3xl text-center font-bold underline">
+          Create an Account
+        </h1>
+        <input
+         value={name}
+         onChange={(e)=>{setName(e.target.value)}}
+          type="text"
+          placeholder="Enter your name"
+          className="rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4"
+        />
+        <input
+        value={email}
+        onChange={(e)=>{setEmail(e.target.value)}}
+          type="email"
+          placeholder="Enter your email"
+          className="rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4"
+        />
+        <input
+        value={password}
+        onChange={(e)=>{setPassword(e.target.value)}}
+          type="password"
+          placeholder="Enter your password"
+          className="rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4"
+        />
+        <input
+        value={conpass}
+        onChange={(e)=>{setConpass(e.target.value)}}
+          type="password"
+          placeholder="Confirm password"
+          className="rounded py-3 px-4 text-2xl border-2 outline-none focus:border-cyan-700 focus:border-4"
+        />
+        <button className="px-5 py-3 bg-emerald-800 rounded-2xl w-full active:scale-90 cursor-pointer text-xl text-white font-bold">
+          Submit
+        </button>
       </form>
     </div>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
