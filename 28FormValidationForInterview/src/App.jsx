@@ -13,17 +13,27 @@ if(password!==conpass){
   setError("Password is not matched")
   return;
 }
-else if(password.length<8){
+if(password.length<8){
   setError("Password must be greater than 8")
   return;
 }
+// regix for pass 
+if(!/[,<>!./;:@#$&*]/.test(password)){
+  setError("password must contain a special character");
+  return
+}
+if(!/[A-Z]/.test(password)){
+   setError("Password must contain a Capital letter")
+   return
+}
+
 console.log(`name : ${name} , email : ${email} ,pass: ${password} , confirm pass : ${conpass}`)
 setConpass("")
 setError('')
 setName("")
 setEmail("")
 setPassword("")
-}
+
 
 // toaster 
 const notify =()=> toast.success('Form Submitted !!!', {
@@ -37,10 +47,15 @@ progress: undefined,
 theme: "light",
 transition: Bounce,
 });
+
+}
+
+
   return (
     <div className="h-screen w-full flex items-center justify-center p-1">
       <form onSubmit={(e)=>{
         handleForm(e)
+        notify()
       }} className=" px-7 w-[30%] h-[70%] flex flex-col gap-4  justify-center bg-sky-100 rounded border-2 border-cyan-500">
         <h1 className="text-3xl text-center font-bold underline">
           Create an Account
@@ -80,9 +95,7 @@ transition: Bounce,
         {error && (
           <p className="text-lg text-red-600 font-semibold text-center">{error}</p>
         )}
-        <button className="px-5 py-3 bg-emerald-800 rounded-2xl w-full active:scale-90 cursor-pointer text-xl text-white font-bold"
-        onClick={notify}>
-          
+        <button className="px-5 py-3 bg-emerald-800 rounded-2xl w-full active:scale-90 cursor-pointer text-xl text-white font-bold">
           Submit
         </button>
       </form>
