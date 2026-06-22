@@ -6,6 +6,7 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [conpass, setConpass] = useState("");
   const [error, setError] = useState("");
+  const [user, setUser] = useState([])
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -31,13 +32,21 @@ const App = () => {
     console.log(
       `name : ${name} , email : ${email} ,pass: ${password} , confirm pass : ${conpass}`,
     );
+ setUser([...user, {
+  name: name,
+  email: email,
+  password: password
+}])
     setConpass("");
     setError("");
     setName("");
     setEmail("");
     setPassword("");
+    notify();
+console.log(user)
+  };
 
-    // toaster
+ // toaster
     const notify = () =>
       toast.success("Form Submitted !!!", {
         position: "top-right",
@@ -50,14 +59,12 @@ const App = () => {
         theme: "light",
         transition: Bounce,
       });
-  };
-
+      
   return (
     <div className="h-screen w-full flex items-center justify-center p-1">
       <form
         onSubmit={(e) => {
           handleForm(e);
-          notify();
         }}
         className=" px-7 w-[30%] h-[70%] flex flex-col gap-4  justify-center bg-sky-100 rounded border-2 border-cyan-500"
       >
