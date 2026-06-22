@@ -21,6 +21,25 @@ const handleChange=(e)=>{
 
 const handleForm=(e)=>{
   e.preventDefault();
+
+   if (formData.password !== formData.confPass) {
+      setError("Password is not matched");
+      return;
+    }
+    if (formData.password.length < 8) {
+      setError("Password must be greater than 8");
+      return;
+    }
+    // regix for pass
+    if (!/[,<>!./;:@#$&*]/.test(formData.password)) {
+      setError("password must contain a special character");
+      return;
+    }
+    if (!/[A-Z]/.test(formData.password)) {
+      setError("Password must contain a Capital letter");
+      return;
+    }
+
 console.log(formData)
   notify()
 
