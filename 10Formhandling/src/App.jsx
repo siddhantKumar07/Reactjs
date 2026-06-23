@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {ToastContainer,toast,Bounce} from 'react-toastify'
 const App = () => {
   const [error, setError] = useState('')
+  const [users,setUsers]= useState([])
 const [formData, setFormData] = useState({
   fullName:"",
   email:'',
@@ -39,8 +40,17 @@ const handleForm=(e)=>{
       setError("Password must contain a Capital letter");
       return;
     }
+users.push(formData)
+console.log(users)
 
-console.log(formData)
+setFormData(
+  {
+    fullName:"",
+  email:'',
+  password:'',
+  confPass:''
+  }
+)
   notify()
 
   setError('')
@@ -62,6 +72,7 @@ console.log(formData)
         transition: Bounce,
       });
   return (
+    <>
    <div className="h-screen w-full flex items-center justify-center p-1">
       <form
         onSubmit={(e) => {
@@ -132,6 +143,16 @@ console.log(formData)
         transition={Bounce}
       />
     </div>
+
+    <div className="h-full w-full flex items-center gap-3 px-5 flex-wrap bg-emerald-400">
+   {users.map((user,idx)=>{
+    return(
+      <h1 className=" bg-amber-400 py-3 px-3 w-fit text-2xl"key={idx}>{user.fullName}</h1>
+    )
+   })}
+    </div>
+
+    </>
   );
 };
 
