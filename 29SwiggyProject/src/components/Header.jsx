@@ -8,7 +8,7 @@ const Header = () => {
             <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/static-assets/images/swiggy_logo_white.png" alt="" className='w-full h-[90%] cursor-pointer active:scale-90' />
 
           </div>
-          <div className='w-[60%]  h-full text-white flex items-center justify-end gap-8 px-10 bg-green-300 '>
+          <div className='w-[60%]  h-full text-white flex items-center justify-end gap-8 px-10 '>
             <button className=' cursor-pointer text-white font-bold text-base active:scale-90'>Swiggy Corporate</button>
             <button  className='cursor-pointer text-white font-bold text-base active:scale-90'>Partner with us</button>
             <button className='cursor-pointer h-[90%] px-5 font-semibold text-white text-lg border-2 rounded-xl border-white active:scale-90'>Get the app</button>
@@ -33,7 +33,9 @@ const Header = () => {
           </div>
           </div>
         </div>
-        <div></div>
+        <div className='h-[40%] w-[75%] border-2 mx-auto'>
+
+        </div>
     </header>
   )
 }
