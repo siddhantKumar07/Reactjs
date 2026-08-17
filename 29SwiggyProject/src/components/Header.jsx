@@ -26,10 +26,10 @@ const Header = () => {
           <div className=' flex items-center justify-between w-full gap-4'>
           <div className='px-3 w-[40%]  py-4 bg-white rounded-2xl flex items-center gap-2'>
            <MapPin size={30} color="#FF5200" />
-            <input type="text" placeholder='Enter your delivery location' className='text-lg w-full text-black font-bold placeholder:text-gray-500'  />
+            <input type="text" placeholder='Enter your delivery location' className='outline-none text-lg w-full text-black font-bold placeholder:text-gray-500'  />
           </div>
           <div className='px-5 w-[55%] py-4 bg-white rounded-2xl flex items-center gap-2'>
-          <input type="text" placeholder='Search for restaurant, item or more' className='text-lg w-full text-black font-bold placeholder:text-gray-500' />
+          <input type="text" placeholder='Search for restaurant, item or more' className='outline-none text-lg w-full text-black font-bold placeholder:text-gray-500' />
           <Search size={30} color="#bababa" />
           </div>
           </div>
