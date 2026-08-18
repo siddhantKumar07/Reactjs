@@ -14,7 +14,6 @@ const Header = () => {
             <button  className='cursor-pointer text-white font-bold text-base active:scale-90'>Partner with us</button>
             <button className='cursor-pointer h-[90%] px-5 font-semibold text-white text-lg border-2 rounded-xl border-white active:scale-90'>Get the app</button>
             <button className='cursor-pointer h-[90%] bg-black px-10 font-semibold text-white text-lg  rounded-xl active:scale-90 '>Sign in</button>
-
           </div>
         </div>
 
@@ -28,7 +27,7 @@ const Header = () => {
            <MapPin size={30} color="#FF5200" />
             <input type="text" placeholder='Enter your delivery location' className='outline-none text-lg w-full text-black font-bold placeholder:text-gray-500'  />
           </div>
-          
+
           <div className='px-5 w-[55%] py-4 bg-white rounded-2xl flex items-center gap-2'>
           <input type="text" placeholder='Search for restaurant, item or more' className='outline-none text-lg w-full text-black font-bold placeholder:text-gray-500' />
           <Search size={30} color="#bababa" />
