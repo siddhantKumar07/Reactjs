@@ -1,5 +1,5 @@
 import React from 'react'
-import foodGrid from '../utils/FoodData'
+import {foodGrid} from '../utils/FoodData'
 import FoodCard from './FoodCard'
 const FoodOptions = () => {
   return (
