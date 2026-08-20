@@ -8,10 +8,11 @@ const RestrauntsList = () => {
     <div className='w-full h-[90%] grid  grid-rows-1 grid-flow-col  auto-cols-[250px] gap-2 overflow-x-scroll overflow-y-hidden'>
     {restaurantList.map((restaurant)=>{
         return(
-            <div className='h-full w-full'>
-             <img src="" alt="" />
+            <div className='h-[50%] w-[250px]'>
+             <img className="h-full w-full object-cover" src={`https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.mediaFiles.url}`} alt="" />
             </div>
         )
+       
     })}
 
     </div>
