@@ -3,7 +3,7 @@ import { MapPin, Search } from 'lucide-react'
 import HeaderCard from './HeaderCard'
 const Header = () => {
   return (
-    <header className='bg-[#FF5200] h-screen w-full p-1  relative'>
+    <header className='bg-[#FF5200] h-full w-full p-1  relative'>
         <div className='h-[8%] w-full px-28  mt-7 flex items-center shrink-0 justify-between gap-10'>
           <div className='h-[100%] w-[15%] py-2 px-2'>
             <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/portal/static-assets/images/swiggy_logo_white.png" alt="" className='w-full h-[90%] cursor-pointer active:scale-90' />

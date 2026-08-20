@@ -4,7 +4,7 @@ import Header from './Header'
 import FoodOptions from './FoodOptions'
 const Home = () => {
   return (
-  <div className='h-screen w-full'>
+  <div className='h-screen w-full flex flex-col gap-5'>
    <Header/>
    <FoodOptions/>
   </div>

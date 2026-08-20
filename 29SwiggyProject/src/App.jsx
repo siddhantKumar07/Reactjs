@@ -4,7 +4,7 @@ import Home from './components/Home'
 import Restraurants from './pages/Restraurants'
 import Instamart from './pages/Instamart'
 import Dineout from './pages/Dineout'
-
+import { Route, Routes } from 'react-router-dom'
 const App = () => {
   return (
     <div>
