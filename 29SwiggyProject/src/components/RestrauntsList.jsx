@@ -8,7 +8,7 @@ const RestrauntsList = () => {
     <div className='w-full h-[90%] grid  grid-rows-1 grid-flow-col  auto-cols-[350px] gap-2 overflow-x-scroll overflow-y-hidden'>
     {restaurantList.map((restaurant)=>{
         return(
-            <div className='h-full w-[350px] rounded-2xl border-2 relative'> 
+            <div className='h-full w-[350px] rounded-2xl border-2 '> 
             <div style={{backgroundImage:`url(https://media-assets.swiggy.com/swiggy/image/upload/${restaurant.mediaFiles[0].url})`,backgroundSize: 'cover',
     backgroundPosition: 'center',}} className='h-[50%] w-full rounded-2xl flex justify-start items-end'>
             <div className='flex justify-between items-center w-full px-3 py-4 shadow-lg bg-black/25 rounded-b-2xl'>
@@ -17,6 +17,14 @@ const RestrauntsList = () => {
             </div>
             </div>
             
+            <div className='h-[50%] w-full p-4'>
+              
+              <p className='text-gray-700'>{restaurant.cuisines.join(', ')}</p>
+              <p className='text-gray-700'>{restaurant.locality}</p>
+              <p className='text-gray-700'>{restaurant.costForTwo}</p>
+              <p className='text-gray-700'>{restaurant.locationInfo?.distanceString || 'Distance unavailable'}</p>
+              
+            </div>
             
             </div>
         )
