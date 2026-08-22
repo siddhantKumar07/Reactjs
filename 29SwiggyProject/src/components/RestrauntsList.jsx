@@ -8,6 +8,7 @@ const RestrauntsList = () => {
   <h1 className='text-2xl font-bold text-center'>Discover best restraunts on Dineout</h1>
     <div className='w-full h-[70%] grid pb-4  grid-rows-1 grid-flow-col  auto-cols-[350px] gap-4 overflow-x-scroll overflow-y-hidden scrollbar-thin scrollbar-thumb-emerald-300'>
     {restaurantList.map((restaurant)=>{
+
         return(
             <div className='h-full w-[350px] rounded-2xl  '> 
              <Link  to={`https://www.swiggy.com/restaurants/${restaurant.locationInfo?.city.name}/${restaurant.locality}/${restaurant.name.split(" ").join("-") }-${restaurant.id}/dineout`} className='h-full w-full rounded-2xl'>
