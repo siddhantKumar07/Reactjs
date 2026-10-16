@@ -8,13 +8,11 @@ function Register() {
         password:'',
         confirmPass:"",
         gmail:""
-    })  
-    
+    })   
 const handleSubmit=(e)=>{
     e.preventDefault();
     console.log(user)
 }
-
 const handleChange=(e)=>{
 const {name,value}=e.target
 console.log(e)
